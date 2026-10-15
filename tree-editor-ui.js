@@ -82,7 +82,9 @@
     $('tree-leaf-parent').addEventListener('change',()=>{selected=$('tree-leaf-parent').value;draw();});
     $('tree-multiplicity').addEventListener('input',()=>{multiplicity=Number($('tree-multiplicity').value);$('tree-multiplicity-value').textContent=multiplicity;draw();markDirty();});
     $('tree-leaf-add').addEventListener('click',()=>{if(!updateEdges())return;if(edges.length>=10){error('交互编辑器最多 10 条边。');return;}const vs=vertices();let i=0;while(vs.includes('V'+i))i++;edges.push([$('tree-leaf-parent').value,'V'+i]);render();markDirty();});
-    $('tree-leaf-remove').addEventListener('click',()=>{if(!updateEdges())return;const v=$('tree-leaf-parent').value,inc=incident(v);if(edges.length===1||inc.length!==1){error('请选择度为 1 的叶子；至少保留一条边。');return;}edges.splice(inc[0],1);orders=Object.create(null);if(exceptional===v)exceptional=vertices()[0];selected=vertices()[0];render();markDirty();});
+    $('tree-leaf-remove').addEventListener('click',()=>{if(!updateEdges())return;const v=$('tree-leaf-parent').value,inc=incident(v);if(edges.length===1||inc.length!==1){error('请选择度为 1 的叶子；至少保留一条边。');return;}
+      const removed=inc[0];edges.splice(removed,1);const retained=Object.create(null);for(const u of vertices())retained[u]=(orders[u]||[]).filter(i=>i!==removed).map(i=>i>removed?i-1:i);orders=retained;
+      if(exceptional===v){exceptional=vertices()[0];multiplicity=1;}selected=vertices()[0];render();markDirty();});
     $('tree-preset').addEventListener('change',()=>preset($('tree-preset').value));
     $('tree-reset-order').addEventListener('click',()=>{orders=Object.create(null);render();markDirty();});
     $('tree-export').addEventListener('click',()=>{try{const input=readInput(),u=URL.createObjectURL(new Blob([JSON.stringify(input,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=u;a.download='brauer-tree-input.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),30000);}catch(e){error(e.message);}});
