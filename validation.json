@@ -1,0 +1,139 @@
+{
+  "schema": "brauer-tree-validation-1",
+  "date": "2026-10-15",
+  "versions": {
+    "GAP": "4.16.1",
+    "QPA": "1.37",
+    "field": "GF(5)",
+    "python": "3.9.6"
+  },
+  "scope": "Finite split Brauer tree algebras: connected tree, cyclic orders, at most one exceptional vertex.",
+  "methods": [
+    "Generate bound quiver relations of types I, II, III; omit truncated leaf loops, with the single-edge multiplicity-one exception k[x]/(x^2).",
+    "Independently enumerate every string of A/soc(A) modulo inversion. Reachable prefix automaton is checked acyclic; enumerate to exhaustion. Add every explicit indecomposable projective.",
+    "Python solves all Hom commutation equations using Gaussian nullspaces over GF(5). For every tested End algebra, all field-linear combinations are enumerated to check nonunit iff diagonal scalar is zero.",
+    "Python computes full rad/rad^2 over every intermediate indecomposable, including projectives and nonzero End radicals.",
+    "Actual QPA constructs the algebra and all matrix modules; verifies indecomposability, pairwise nonisomorphism, projectivity, injectivity, Jacobson radicals, all Hom dimensions, all irreducible multiplicities, and DTr by unique actual module isomorphism.",
+    "JS output is matched to Python modules by actual invertible Hom matrices, then every Hom/Irr entry and every tau target is compared with QPA. No identification by dimension vectors."
+  ],
+  "reproduce": [
+    "GAP_BIN=/path/to/gap python3 run_oracles.py",
+    "NODE_BIN=/path/to/node python3 verify_js.py",
+    "GAP_BIN=/path/to/gap python3 verify_native_qpa.py",
+    "/path/to/gap -q -b --quitonbreak native_constructor_limitations.g"
+  ],
+  "coverage": {
+    "cases": 9,
+    "modules": 200,
+    "homPairs": 6660,
+    "irreduciblePairs": 6660,
+    "qpaChecks": 4266,
+    "actualNativeConstructorCases": 3
+  },
+  "nativeQpa137Limitations": [
+    "BrauerConfigurationAlgebra sorts input cyclic orders in place before constructing arrows; arbitrary ribbon order is not preserved.",
+    "BrauerConfigurationAlgebra returns dimension 1 for the single-edge multiplicity-one input; the defined Brauer tree algebra is k[x]/(x^2), dimension 2.",
+    "The atlas explicit presentation handles both cases. Native constructor crosschecks were restricted to nondegenerate default-order examples."
+  ],
+  "sources": [
+    "https://arxiv.org/abs/1612.00061",
+    "https://gap-packages.github.io/qpa/doc/chap4.html#X820AE0208636B9AA",
+    "https://arxiv.org/abs/1509.02478"
+  ],
+  "javascriptTests": {
+    "groups": 14,
+    "finiteOrientations": 244,
+    "hereditaryNodes": 22354,
+    "cyclicParameterPairs": 240,
+    "tubeWindows": 108
+  },
+  "crosschecks": [
+    {
+      "case": "edge1_m1",
+      "modules": 2,
+      "arrows": 2,
+      "allHomPairs": 4,
+      "matrixIsomorphisms": true,
+      "actualQpaDTr": true,
+      "status": "passed"
+    },
+    {
+      "case": "edge1_m2",
+      "modules": 3,
+      "arrows": 4,
+      "allHomPairs": 9,
+      "matrixIsomorphisms": true,
+      "actualQpaDTr": true,
+      "status": "passed"
+    },
+    {
+      "case": "line3_m1",
+      "modules": 12,
+      "arrows": 18,
+      "allHomPairs": 144,
+      "matrixIsomorphisms": true,
+      "actualQpaDTr": true,
+      "status": "passed"
+    },
+    {
+      "case": "line3_internal_m2",
+      "modules": 21,
+      "arrows": 36,
+      "allHomPairs": 441,
+      "matrixIsomorphisms": true,
+      "actualQpaDTr": true,
+      "status": "passed"
+    },
+    {
+      "case": "line3_leaf_m2",
+      "modules": 21,
+      "arrows": 36,
+      "allHomPairs": 441,
+      "matrixIsomorphisms": true,
+      "actualQpaDTr": true,
+      "status": "passed"
+    },
+    {
+      "case": "fork4_m1",
+      "modules": 20,
+      "arrows": 32,
+      "allHomPairs": 400,
+      "matrixIsomorphisms": true,
+      "actualQpaDTr": true,
+      "status": "passed"
+    },
+    {
+      "case": "fork4_m2",
+      "modules": 36,
+      "arrows": 64,
+      "allHomPairs": 1296,
+      "matrixIsomorphisms": true,
+      "actualQpaDTr": true,
+      "status": "passed"
+    },
+    {
+      "case": "doublefork5_m1",
+      "modules": 30,
+      "arrows": 50,
+      "allHomPairs": 900,
+      "matrixIsomorphisms": true,
+      "actualQpaDTr": true,
+      "status": "passed"
+    },
+    {
+      "case": "doublefork5_m2",
+      "modules": 55,
+      "arrows": 100,
+      "allHomPairs": 3025,
+      "matrixIsomorphisms": true,
+      "actualQpaDTr": true,
+      "status": "passed"
+    }
+  ],
+  "limits": {
+    "maxEdges": 10,
+    "maxMultiplicity": 8,
+    "maxModules": 150,
+    "field": "GF(5)"
+  }
+}

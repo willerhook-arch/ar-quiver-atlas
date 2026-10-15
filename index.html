@@ -1,0 +1,1322 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="离线可用的 AR quiver 研究图谱：Dynkin、Nakayama、Brauer 星与 Euclidean 遗传代数。">
+<title>AR Quiver Atlas · 不可分解模的分布</title>
+<style>
+.tree-editor{margin-bottom:20px;padding:22px}.tree-editor-head{display:flex;justify-content:space-between;gap:25px;align-items:start;margin-bottom:17px}.tree-editor h2{font-size:22px;margin:4px 0}.tree-editor p{margin:7px 0}.tree-editor-head select{display:block;margin-top:5px}.tree-editor select{border:1px solid #cdd9e0;background:white;padding:7px;border-radius:7px;color:var(--ink);max-width:100%}.tree-editor-grid{display:grid;grid-template-columns:1.65fr 1fr 1fr 1fr;gap:22px}.tree-picture{background:#f6f9fa;border-radius:11px;padding:12px}.tree-picture svg{width:100%;display:block}.tree-picture [role="button"]{cursor:pointer}.tree-picture [role="button"]:focus circle{stroke-width:4}.tree-step{font-size:12px;font-weight:650;margin-bottom:10px}.tree-step b{display:inline-block;width:20px;height:20px;background:#e4f4f1;color:#087f83;line-height:20px;text-align:center;border-radius:50%;margin-right:6px}.tree-leaf-tools{display:flex;gap:5px;flex-wrap:wrap;margin:13px 0 6px}.tree-leaf-tools button{font-size:11px;padding:5px 7px}.tree-leaf-tools select{font-size:11px;max-width:135px}.tree-editor button{font-size:11px}.tree-edge-inputs td,.tree-edge-inputs th{padding:4px 3px;font-size:11px}.tree-edge-inputs input{width:100%;min-width:32px;border:1px solid #cdd9e0;border-radius:5px;padding:5px;color:var(--ink)}.tree-edge-scroll{max-height:265px;overflow:auto;margin-bottom:9px}.tree-order-row{display:grid;grid-template-columns:30px 1fr;gap:6px;align-items:center;margin:5px 0;font-size:12px}.tree-order-row input{width:100%;min-width:55px;border:1px solid #cdd9e0;border-radius:5px;padding:5px;font-size:12px;color:var(--ink)}#tree-orders{max-height:265px;overflow:auto;margin-bottom:9px}.tree-primary{background:#087f83;color:white;border-color:#087f83;width:100%;padding:9px;font-weight:600;margin:7px 0}.tree-primary:hover{background:#096d70;color:white}.tree-error{background:#fff1e8;color:#9c4d23;padding:11px 14px;font-size:12px;border-radius:7px;margin-top:15px}.tree-progress{background:#edf7f4;color:#32686a;padding:11px 14px;font-size:12px;border-radius:7px;margin-top:15px}#tree-dirty{margin-top:8px}.tree-editor-foot{display:flex;justify-content:space-between;gap:15px;align-items:center;border-top:1px solid var(--line);padding-top:13px;margin-top:17px;font-size:11px;color:var(--muted)}.tree-editor-foot>div{display:flex;gap:8px;align-items:center}.tree-file{position:relative;overflow:hidden;border:1px solid var(--line);border-radius:7px;padding:5px 10px;color:var(--ink);cursor:pointer;white-space:nowrap}.tree-file input{position:absolute;opacity:0;inset:0;width:100%;cursor:pointer}.tree-algebra-details{max-height:190px;overflow:auto;background:#f7f9fb;padding:9px;border-radius:7px}.tree-algebra-details code{font-size:11px;white-space:pre-wrap;overflow-wrap:anywhere}.tree-basis{display:block;font:11px/1.8 ui-monospace,monospace;overflow-wrap:anywhere;color:#466476}.tree-rep-scroll{max-height:160px;overflow:auto}.tree-rep-scroll p{font:11px/1.8 ui-monospace,monospace;color:#526c7b;margin:4px 0}.tree-busy{opacity:.6;pointer-events:none}@media(max-width:1100px){.tree-editor-grid{grid-template-columns:1.3fr 1fr 1fr}.tree-editor-grid>div:last-child{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr 1fr;gap:0 18px}.tree-editor-grid>div:last-child>.tree-step{grid-column:1/-1}.tree-editor-grid>div:last-child>.field{margin:5px 0}.tree-editor-grid>div:last-child>p{grid-column:3;grid-row:2/4}.tree-editor-grid>div:last-child>.tree-primary{grid-column:1/3}.tree-editor-grid>div:last-child>#tree-dirty{grid-column:1/-1}}@media(max-width:760px){.tree-editor{padding:16px}.tree-editor-head{display:block}.tree-editor-head select{margin-bottom:15px}.tree-editor-grid{grid-template-columns:1fr 1fr;gap:16px}.tree-picture{grid-column:1/-1}.tree-picture svg{max-height:240px}.tree-editor-grid>div:last-child{display:block}.tree-editor-foot{display:block}.tree-editor-foot>div{margin-top:10px}.tree-editor h2{font-size:20px}}@media print{.tree-editor{display:none}}
+
+:root{--ink:#183044;--muted:#607485;--line:#dce4e9;--paper:#f4f7f9;--teal:#087f83;--teal-soft:#e4f4f1;--orange:#bb6534;--orange-soft:#fff0e5;--blue:#4774ba;--purple:#8661b4;--radius:16px}
+*{box-sizing:border-box}body{margin:0;background:var(--paper);color:var(--ink);font:14px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Microsoft Yahei",sans-serif}button,input,select{font:inherit}button,select{cursor:pointer}button{background:white;border:1px solid var(--line);border-radius:8px;padding:7px 12px;color:var(--ink)}button:hover{border-color:var(--teal);color:var(--teal)}button:focus-visible,input:focus-visible,select:focus-visible,a:focus-visible,[tabindex]:focus-visible{outline:3px solid #45b9bd;outline-offset:3px}button.active{background:var(--ink);border-color:var(--ink);color:white}a{color:var(--teal);text-underline-offset:3px}header{background:#153448;color:white;padding:25px max(24px,calc((100vw - 1460px)/2));position:relative;overflow:hidden}header:after{content:"τ";position:absolute;right:12%;top:-70px;font:240px Georgia;color:#ffffff08;pointer-events:none}.brand{display:flex;align-items:center;gap:10px;font-size:11px;letter-spacing:2px;color:#b9d4df}.brand-mark{border:1px solid #6aa7ad;border-radius:50%;width:26px;height:26px;text-align:center;line-height:24px;color:#6ddacb;letter-spacing:0}h1{font-size:30px;letter-spacing:-1px;margin:11px 0 5px;font-weight:650}header p{margin:0;color:#c0d1db;font-size:14px}.header-row{display:flex;justify-content:space-between;gap:18px;align-items:center}.offline{border:1px solid #446070;border-radius:30px;padding:5px 12px;white-space:nowrap;font-size:12px;color:#d5ece8}.offline b{color:#69d6bb}nav{background:white;border-bottom:1px solid var(--line);display:flex;gap:28px;padding:0 max(24px,calc((100vw - 1460px)/2))}nav button{border:0;border-radius:0;padding:15px 0 12px;background:transparent;border-bottom:3px solid transparent;color:var(--muted)}nav button.active{background:white;color:var(--ink);border-color:var(--teal);font-weight:650}main{max-width:1508px;margin:0 auto;padding:23px 24px 40px}.panel{display:none}.panel.active{display:block}.workspace{display:grid;grid-template-columns:248px minmax(380px,1fr) 259px;gap:18px;align-items:start}.card{background:white;border:1px solid var(--line);border-radius:var(--radius)}.settings{padding:20px;position:sticky;top:15px}.eyebrow{font-size:10px;color:var(--teal);font-weight:750;letter-spacing:1.6px;text-transform:uppercase}.card h2{font-size:17px;margin:5px 0 17px}.field{margin:15px 0}.field label{display:block;font-size:12px;color:var(--muted);margin-bottom:5px}.field select{width:100%;border:1px solid #cdd9e0;background:white;padding:8px 9px;border-radius:7px;color:var(--ink)}.number-row{display:flex;align-items:center;gap:9px}.number-row input{min-width:0;width:100%;accent-color:var(--teal)}output{font:600 16px ui-monospace,monospace;min-width:28px;text-align:right}.check{font-size:12px;display:flex;gap:7px;align-items:center;margin:13px 0}.check input{accent-color:var(--teal)}.small{font-size:12px;color:var(--muted)}.micro{font-size:11px;color:var(--muted)}.divider{height:1px;background:var(--line);margin:17px 0}.preset{display:flex;flex-wrap:wrap;gap:6px}.preset button{font-size:11px;padding:5px 8px}.quiver-mini{background:#f6f8fa;border-radius:8px;overflow:auto;margin-top:10px}.center{min-width:0}.graph-card{overflow:hidden}.graph-head{padding:20px 23px 14px;border-bottom:1px solid var(--line)}.graph-title-row{display:flex;align-items:center;justify-content:space-between;gap:10px}.graph-head h2{font-size:23px;margin:0 0 5px;letter-spacing:-.4px}.badge{display:inline-block;font-size:10px;font-weight:700;padding:3px 8px;border-radius:20px;color:var(--teal);background:var(--teal-soft);white-space:nowrap}.badge.tame{color:var(--orange);background:var(--orange-soft)}.formula{font-family:ui-monospace,"SFMono-Regular",Consolas,monospace;font-size:12px;color:var(--muted);overflow-wrap:anywhere}.stats{display:flex;gap:23px;margin-top:14px;flex-wrap:wrap}.stat strong{font:600 23px/1.25 ui-monospace,monospace;display:block;color:var(--ink)}.stat span{font-size:10px;color:var(--muted)}.graph-toolbar{display:flex;gap:6px;padding:12px 16px 0;align-items:center;flex-wrap:wrap}.graph-toolbar button{font-size:11px;padding:5px 8px}.graph-toolbar .spacer{flex:1}.zoom{display:flex;align-items:center;font-size:11px;color:var(--muted);gap:4px}.zoom input{width:65px;accent-color:var(--teal)}#graph-scroll{overflow:auto;min-height:355px;max-height:650px;background:radial-gradient(#dae3e9 .65px,transparent .65px);background-size:16px 16px}#graph{display:block;margin:auto;height:auto;min-width:100%}#graph .module{cursor:pointer}#graph .module:focus{outline:none}#graph .module:focus rect{stroke:#087f83;stroke-width:3}#graph text{user-select:none}#graph .edge{transition:opacity .15s}#graph .module rect{transition:fill .15s,stroke .15s}.graph-note{padding:11px 18px;background:#f8fafb;border-top:1px solid var(--line);font-size:11px;color:var(--muted)}.legend{display:flex;gap:14px;flex-wrap:wrap;padding:0 18px 11px;background:#f8fafb;font-size:10px;color:var(--muted)}.dot{width:8px;height:8px;display:inline-block;border-radius:50%;margin-right:4px;background:var(--teal)}.dot.p{background:var(--orange)}.dot.i{background:var(--blue)}.dot.both{background:var(--purple)}.inspector{padding:20px}.inspector h2{margin-bottom:9px}.module-name{font:600 22px ui-monospace,monospace;margin:12px 0}.detail-grid{display:grid;grid-template-columns:1fr auto;gap:8px 10px;font-size:12px;margin:14px 0}.detail-grid span{color:var(--muted)}.detail-grid b{text-align:right;overflow-wrap:anywhere;max-width:155px;font-weight:550}.composition{display:flex;gap:4px;flex-wrap:wrap;margin:10px 0}.composition span{background:#edf3f6;border:1px solid #dce6eb;padding:1px 6px;border-radius:4px;font:11px ui-monospace,monospace}.inspection-note{font-size:12px;color:var(--muted);margin-bottom:0}.tau-btn{font-size:12px;width:100%;margin-top:8px}.info-card{padding:18px 21px;margin-top:18px}.info-card h3{font-size:14px;margin:0 0 9px}.info-card p{font-size:12px;margin:8px 0;color:var(--muted)}.info-card p strong{color:var(--ink)}.distribution{display:flex;align-items:end;gap:5px;height:83px;margin:15px 0 27px}.bar-wrap{height:100%;flex:1;display:flex;align-items:center;justify-content:end;flex-direction:column;position:relative;min-width:8px}.bar{width:100%;max-width:32px;background:#77b5b1;border-radius:3px 3px 0 0;min-height:2px}.bar-wrap small{font-size:9px;position:absolute;bottom:-20px;color:var(--muted)}.bar-wrap b{font-size:10px;font-weight:500}.table-card{margin-top:18px;overflow:hidden}.table-head{padding:17px 21px;display:flex;justify-content:space-between;align-items:center;gap:10px}.table-head h3{font-size:14px;margin:0}.table-head input{border:1px solid var(--line);border-radius:7px;padding:6px 9px;width:175px;font-size:12px}.table-scroll{overflow:auto;max-height:390px}table{border-collapse:collapse;width:100%;font-size:12px}th,td{text-align:left;border-top:1px solid var(--line);padding:9px 14px;vertical-align:top}th{background:#f5f8fa;font-size:11px;font-weight:550;color:var(--muted);position:sticky;top:0;z-index:1}tr[data-node]{cursor:pointer}tr[data-node]:hover{background:#f0f8f6}tr.selected{background:#e8f5f1}.tag{font-size:10px;color:var(--teal);white-space:nowrap}.research{max-width:1130px;margin:0 auto}.research-intro{font-size:16px;max-width:900px;margin:0 0 20px;line-height:1.9}.research .card{padding:25px;margin:18px 0}.research h2{font-size:20px;margin:0 0 12px}.research h3{font-size:15px;margin:24px 0 9px}.research p,.research li{font-size:14px;color:#4c6375}.research table{font-size:13px}.research td{padding:13px 14px}.research th{position:static}.callout{border-left:3px solid var(--teal);padding:11px 16px;background:#edf7f4;font-size:13px;margin:17px 0;color:#365c62}.warning{border-color:#cf9157;background:#fff6ec;color:#7b583b}.research code{background:#edf2f5;padding:2px 5px;border-radius:4px;font-size:12px;white-space:normal}.source-list li{margin:11px 0}.tame-parts{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:13px 0}.part{border:1px solid var(--line);border-radius:9px;padding:10px;font-size:11px}.part b{display:block;color:var(--ink);font-size:12px}.part span{color:var(--muted)}.error{background:#fff1ea;color:#a64b24;padding:20px;border-radius:9px}.hidden,[hidden]{display:none!important}footer{font-size:11px;color:var(--muted);padding-top:20px;display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}.controls-title{font-size:12px;font-weight:600;color:var(--ink);margin-top:18px}.empty{padding:25px;color:var(--muted);font-size:12px}#status{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#183044;color:white;padding:9px 18px;border-radius:8px;z-index:10;font-size:12px;box-shadow:0 4px 18px #18304422}noscript{display:block;padding:30px}
+@media(min-width:1500px){.workspace{grid-template-columns:255px minmax(500px,1fr) 270px}}@media(max-width:1150px){.workspace{grid-template-columns:225px minmax(350px,1fr)}.right{grid-column:2}.inspector{display:grid;grid-template-columns:1fr 1fr;gap:0 25px}.inspector>.eyebrow,.inspector>h2{grid-column:1/-1}.inspector .detail-grid{grid-column:2;grid-row:3/7;margin-top:5px}.right .info-card{display:none}}@media(max-width:760px){header{padding:22px 18px}h1{font-size:25px}.offline{display:none}main{padding:16px 12px}nav{padding:0 18px;gap:23px}.workspace{grid-template-columns:1fr;gap:12px}.settings{position:static;padding:16px}.settings h2{margin-bottom:12px}.settings-fields{display:grid;grid-template-columns:1fr 1fr;gap:0 16px}.field{margin:8px 0}.presets-area{display:none}.center,.right{grid-column:1}.quiver-mini{max-height:130px}.graph-head{padding:17px}.graph-head h2{font-size:21px}.stats{gap:19px}.inspector{display:block}.inspector .detail-grid{margin:10px 0}.research .card{padding:17px}.research-intro{font-size:14px}.tame-parts{grid-template-columns:1fr}.research-table{overflow:auto}.graph-toolbar{padding:10px}.table-head input{width:130px}.header-row{gap:0}}
+@media print{header,nav,.settings,.right,.graph-toolbar,footer,.table-head input{display:none}.workspace{display:block}body{background:white}#graph-scroll{max-height:none;overflow:visible}.card{break-inside:avoid}.panel{display:block}.research .card{padding:10px}.table-scroll{max-height:none}}
+</style>
+</head>
+<body>
+<header><div class="brand"><span class="brand-mark">τ</span> QUIVER REPRESENTATION LAB <span style="color:#638594">/</span> RESEARCH ATLAS</div><div class="header-row"><div><h1>不可分解模，分布在哪里？</h1><p>从有限型的完整 AR 图，到 tame 代数的无限分支与参数族。</p></div><span class="offline"><b>●</b> 单文件 · 离线可用</span></div></header>
+<nav aria-label="页面"><button class="active" data-panel="explore">交互图谱</button><button data-panel="classification">可分类的范围</button><button data-panel="methods">算法与依据</button></nav>
+<main>
+<noscript>此 HTML 需要启用 JavaScript。所有运算均在浏览器本地完成，无需联网。</noscript>
+<section id="explore" class="panel active">
+<div id="tree-editor" class="card tree-editor hidden">
+<div class="tree-editor-head"><div><div class="eyebrow">BRAUER TREE / CUSTOM ALGEBRA</div><h2>一棵树，一整个模范畴</h2><p class="small">编辑树形、每个顶点的循环序和唯一异常顶点。边号 1,…,e 对应代数的简单模。</p></div><div><label for="tree-preset" class="small">起始树形</label><select id="tree-preset"><option value="line">三边直线 · 内部重数 2</option><option value="star">三边星形 · 中心重数 2</option><option value="fork">四边分叉 · 重数 1</option><option value="double">五边双分叉 · 重数 1</option></select></div></div>
+<div class="tree-editor-grid">
+<div class="tree-picture"><div id="tree-canvas"></div><div class="micro" id="tree-summary"></div><div class="tree-leaf-tools"><select id="tree-leaf-parent" aria-label="选择添加或删除叶子的顶点"></select><button id="tree-leaf-add">添加叶子</button><button id="tree-leaf-remove">删除此叶子</button></div><p class="micro">可从任意顶点添加叶子来构造树，也可直接编辑右侧端点。循环序字段使用边号。</p></div>
+<div><div class="tree-step"><b>1</b> 连接哪些顶点</div><div class="tree-edge-scroll"><table class="tree-edge-inputs"><thead><tr><th>边</th><th>端点</th><th></th><th>端点</th></tr></thead><tbody id="tree-edge-table"></tbody></table></div><button id="tree-update">更新顶点与循环序</button><div class="micro">改名或重新连接后，先更新顶点。</div></div>
+<div><div class="tree-step"><b>2</b> 各顶点的循环序</div><div id="tree-orders"></div><button id="tree-reset-order">恢复边号顺序</button><p class="micro">例如 3,1,2。循环移位等价；反向一般改变标号代数。</p></div>
+<div><div class="tree-step"><b>3</b> 异常顶点与重数</div><div class="field"><label for="tree-exceptional">异常顶点</label><select id="tree-exceptional"></select></div><div class="field"><label for="tree-multiplicity">该顶点的重数 m</label><div class="number-row"><input id="tree-multiplicity" type="range" min="1" max="8" value="2"><output id="tree-multiplicity-value">2</output></div></div><p class="micro">其余重数为 1。m=1 时没有异常顶点；异常顶点也可以是叶子。</p><button id="tree-apply" class="tree-primary">计算完整 AR 图</button><button id="tree-cancel" class="hidden">取消计算</button><div id="tree-dirty" class="micro" aria-live="polite">尚未计算</div></div>
+</div><div id="tree-error" class="tree-error" role="alert" hidden></div><div id="tree-progress" class="tree-progress" role="status" hidden></div>
+<div class="tree-editor-foot"><span>浏览器资源范围：1–10 条边，1≤m≤8，总不可分解模数≤150。合法输入在范围内完整枚举。</span><div><button id="tree-export">导出树配置</button><label class="tree-file">导入配置<input type="file" id="tree-import" accept="application/json,.json"></label></div></div>
+</div>
+
+<div class="workspace">
+<aside class="card settings"><div class="eyebrow">01 / CHOOSE AN ALGEBRA</div><h2>选择代数与参数</h2><div class="settings-fields">
+<div class="field"><label for="family">代数族</label><select id="family"><option value="tree" selected>Brauer 树 · 自定义树形与循环序</option><option value="dynkin">Dynkin 遗传代数 · A / D / E</option><option value="brauer">Brauer 星代数 · n 边 / 重数 m</option><option value="cyclic">统一循环 Nakayama · kCₙ/Jᴸ</option><option value="affine">Euclidean 遗传代数 · tame</option></select></div>
+<div class="field" id="dynkin-field"><label for="dynkin-type">Dynkin 图</label><select id="dynkin-type"><option value="A">Aₙ</option><option value="D">Dₙ</option><option value="E6">E₆</option><option value="E7">E₇</option><option value="E8">E₈</option></select></div>
+<div class="field hidden" id="affine-field"><label for="affine-type">Euclidean 图</label><select id="affine-type"><option value="K">Kronecker · 两支平行箭头</option><option value="A">Ãₚ,ᵩ · 两条同源同汇路径</option><option value="D">D̃ₙ</option><option value="E6">Ẽ₆</option><option value="E7">Ẽ₇</option><option value="E8">Ẽ₈</option></select></div>
+<div class="field" id="n-field"><label for="size">顶点数 n</label><div class="number-row"><input id="size" type="range" min="1" max="12" value="3"><output id="size-value" for="size">3</output></div></div>
+<div class="field hidden" id="m-field"><label for="multiplicity">中心重数 m（叶子重数 1）</label><div class="number-row"><input id="multiplicity" type="range" min="1" max="6" value="2"><output id="multiplicity-value" for="multiplicity">2</output></div></div>
+<div class="field hidden" id="L-field"><label for="loewy">Loewy 长度 L</label><div class="number-row"><input id="loewy" type="range" min="2" max="16" value="7"><output id="loewy-value" for="loewy">7</output></div></div>
+<div class="field hidden" id="p-field"><label for="p">两条路径长度 p / q</label><div class="number-row"><input id="p" type="range" min="1" max="6" value="2"><output id="p-value" for="p">2</output></div><div class="number-row"><input id="q" aria-label="路径长度 q" type="range" min="1" max="6" value="3"><output id="q-value" for="q">3</output></div></div>
+<div class="field" id="orientation-field"><label for="orientation">箭头定向</label><select id="orientation"><option value="forward">标准定向</option><option value="reverse">全部反向</option><option value="alternating">按顶点交替定向（树形图）</option></select></div>
+<div class="field hidden" id="depth-field"><label for="depth">每个无限分支的截取深度</label><div class="number-row"><input id="depth" type="range" min="2" max="10" value="5"><output id="depth-value" for="depth">5</output></div></div>
+<div class="field hidden" id="tube-field"><label for="tube-choice">正则分支</label><select id="tube-choice"></select></div>
+<div class="field hidden" id="lambda-field"><label for="parameter">同质管的参数 λ ∈ ℙ¹(k)</label><select id="parameter"><option value="λ">一般 λ</option><option value="0">0</option><option value="1">1</option><option value="∞">∞</option></select></div>
+</div><label class="check hidden" id="stable-field"><input id="stable" type="checkbox">只看稳定 AR 图（删去投射模）</label><label class="check"><input id="show-tau" type="checkbox">显示所选顶点的 τ 虚线</label>
+<div class="quiver-mini" id="quiver-mini" aria-label="代数的 Gabriel quiver"></div><p class="micro" id="conventions"></p>
+<div class="presets-area"><div class="divider"></div><div class="small">继续已有例子</div><div class="preset"><button data-preset="a3">A₃</button><button data-preset="m1">三边星 · m=1</button><button data-preset="m2">三边星 · m=2</button><button data-preset="kronecker">Kronecker</button></div></div>
+</aside>
+<div class="center"><div class="card graph-card"><div class="graph-head"><div class="graph-title-row"><h2 id="algebra-title"></h2><span class="badge" id="scope-badge"></span></div><div class="formula" id="algebra-formula"></div><div class="stats" id="stats" aria-live="polite"></div></div>
+<div class="graph-toolbar"><div id="component-tabs" class="hidden"><button data-view="overview">总体分布</button><button data-view="preprojective">预投射</button><button data-view="regular">正则管</button><button data-view="preinjective">预内射</button></div><span class="spacer"></span><label class="zoom">缩放<input id="zoom" type="range" min="80" max="210" value="100" aria-label="图形缩放"></label><button id="export-svg" title="导出当前视图及范围说明">SVG ↓</button><button id="export-json" title="导出顶点、箭头和结构元数据">JSON ↓</button></div>
+<div id="graph-scroll"><svg id="graph" xmlns="http://www.w3.org/2000/svg" role="group" aria-label="Auslander–Reiten quiver"></svg></div><div class="graph-note" id="graph-note"></div><div class="legend"><span><i class="dot"></i>普通模</span><span><i class="dot p"></i>投射</span><span><i class="dot i"></i>内射</span><span><i class="dot both"></i>投射且内射</span><span>实线＝不可约态射；数字＝箭头重数</span></div></div>
+<div class="card info-card"><h3 id="distribution-title">模的分布</h3><div id="distribution-description"></div><div id="distribution-chart"></div><div id="structure-description"></div></div>
+<div class="card table-card"><div class="table-head"><h3 id="module-table-title">不可分解模</h3><input id="module-search" aria-label="筛选模列表" placeholder="筛选名称或维数…"></div><div class="table-scroll"><table><thead><tr><th>模</th><th>维数向量</th><th>P / I</th><th>τ</th></tr></thead><tbody id="module-table"></tbody></table></div></div>
+</div>
+<aside class="right"><div class="card inspector" id="inspector"></div><div class="card info-card"><h3>如何读这张图</h3><p>点选顶点查看维数、投射/内射性质和 τ。实线只表示不可约态射，不表示所有非零 Hom。</p><p>有限型可以画全；tame 的有限画面只截取各分支。参数 λ 改变同质管中的同构类，并不会新增一条连接管之间的 AR 箭头。</p><p><a href="#classification" data-jump="classification">哪些族可以这样处理 →</a></p></div></aside>
+</div></section>
+<section id="classification" class="panel research">
+<p class="research-intro">“能够分类”有两个层次：有限型可以列出全部同构类；tame 通常需要离散组合数据加一参数族。<strong>表示型本身并不能替代一个具体的分类算法。</strong>下面区分数学上已知的分类与这个 HTML 已实现的范围。</p>
+<div class="card"><h2>适合建立 AR 图谱的主要代数族</h2><p>统一约定：有限维基本代数、有限维右模；标准 tame 图景取代数闭域 k（例如 ℂ）。只讨论模范畴 mod-A，导出范畴的 AR 图不是同一张图。此表是可操作的主要族，不能穷尽所有已研究的代数。</p><div class="research-table"><table><thead><tr><th>代数族</th><th>不可分解模如何分类</th><th>AR 图可获得什么</th><th>本程序</th></tr></thead><tbody>
+<tr><td><strong>Dynkin 遗传 kQ</strong><br>Aₙ、Dₙ、E₆/E₇/E₈</td><td>有限型。每个正根恰对应一个不可分解模；个数依次为 n(n+1)/2、n(n−1)、36/63/120。<a href="#ref-dynkin">[1]</a></td><td>选定 Q 的定向后，可由重复 quiver / Coxeter 变换生成整个模范畴 AR 图。</td><td><span class="tag">完整实现</span><br>三种定向预设、全部维数向量、P/I/τ；A 型同时显示区间标签。</td></tr>
+<tr><td><strong>Nakayama</strong><br>线性或循环，满足 admissibility 的 Kupisch series</td><td>有限型。模由简单顶 Sᵢ 与允许的长度 ℓ 标记，1≤ℓ≤cᵢ；同维数向量未必同构。<a href="#ref-nakayama">[2]</a></td><td>单列模的截商与 radical 嵌入给出不可约态射；须使用具体 Kupisch 数据。</td><td><span class="tag">统一循环子族已实现</span><br>kCₙ/Jᴸ；没有实现任意 Kupisch series 输入。</td></tr>
+<tr><td><strong>Brauer tree</strong><br>e 条边，至多一个重数 m&gt;1 的顶点</td><td>有限型。总数 e(em+1)，非投射数 e²m；任意树的模不都单列。<a href="#ref-tree">[3]</a></td><td>稳定图为 ℤAₑₘ/〈τᵉ〉；完整图还须按树确定投射模的附着位置。</td><td><span class="tag">一般树完整实现</span><br>自定义树形、循环序及异常顶点；GF(5) 精确计算。1–10 边、m≤8、总模数≤150。</td></tr>
+<tr><td><strong>Euclidean 遗传 kQ</strong><br>Ã、D̃、Ẽ；含 Kronecker</td><td>tame。预投射、预内射是离散族；正则部分按管及准长度分类。<a href="#ref-euclidean">[4]</a></td><td>整个图是预投射分支、ℙ¹(k) 索引的正则管、预内射分支的不交并；只有有限个管秩大于 1。</td><td><span class="tag">完整结构 + 有限窗口</span><br>算出预投射/预内射窗口维数；管展示抽象位置和参数化，不求所有箭头矩阵。</td></tr>
+<tr><td><strong>String / gentle</strong><br>给定 quiver 与单项式关系</td><td>strings 给离散模；primitive bands 配合 λ∈k×、Jordan 大小给一参数族，需商去循环移位，以及 (b,λ,d)∼(b⁻¹,λ⁻¹,d) 的反转等价。某些子族是有限型。<a href="#ref-string">[5]</a></td><td>可用 hooks/cohooks 构造 string 模的 AR 序列；bands 位于同质管。要分析无限字符串语言，不能靠任意长度截断宣布完整。</td><td>分类方法已知；通用 string/band 引擎未实现。Kronecker 可作为本页已实现的 tame 例子。</td></tr>
+<tr><td><strong>一般 Brauer graph</strong><br>图、循环序、顶点重数</td><td>有限或 tame；strings/bands 及投射信息提供组合描述。图中圈和重数影响增长与分支。<a href="#ref-graph">[6]</a></td><td>Green walks 等可读出例外管；一般还出现非管分支。不能用“所有分支都是管”概括。</td><td>列入研究扩展；当前只生成 Brauer 星。需要 Green walks、strings/bands 与投射附着算法。</td></tr>
+<tr><td><strong>Canonical / tubular 等</strong><br>domestic 或 tubular 的指定参数</td><td>有成熟的斜率、管与加权数据理论；tubular 权型为 (2,2,2,2)、(3,3,3)、(2,4,4)、(2,3,6)。<a href="#ref-tubular">[7]</a></td><td>tubular 的内部正则部分按正有理斜率排列为管族；模范畴还需处理边界族与外侧分支。</td><td>理论分析；未把正则管局部示意冒充为整个模范畴。需要单独的 canonical/tubular 引擎。</td></tr>
+</tbody></table></div></div>
+<div class="card"><h2>哪些情形不能靠这个思路“一键分类”</h2><p><strong>表示有限：</strong>定义上只有有限多个不可分解同构类，完整 AR 图当然是有限图。难点是从输入的 (Q,I) 找到并证明一个完整列表；上表列出的族有可直接使用的分类工具，不是对所有表示有限代数的穷尽清单。</p><p><strong>Wild：</strong>一般包含任意两矩阵同时相似等难度的分类问题，不能指望所有 wild 代数都有类似正根或 strings/bands 的统一简明分类。固定维数、固定分支或特殊模仍可以研究和计算；“wild”并不表示某个给定模的 Hom 或 τ 不能计算。<a href="#ref-wild">[8]</a></p><p><strong>仅知道 tame：</strong>定义是在每个维数中，除有限个例外外，可由有限多个一参数族覆盖；它没有自动给出这些族的参数规范、彼此同构判别或 AR 分支的拼接方式。完整程序应按代数族装入经过验证的算法。</p><p>Canonical 代数也不全是 tame：对标准权型，χ=2−Σ(1−1/pᵢ) 的正、零、负分别对应 domestic、tubular、wild。不能只看到“canonical”就套用有限个例外管的遗传型模板。<a href="#ref-tubular">[7]</a></p><div class="callout warning">必须区分：同维数向量 ≠ 同构；稳定 AR 图 ≠ 完整 AR 图；有限窗口 ≠ 完整分类；分支之间可能有非零 Hom，但 AR quiver 没有跨分支的不可约箭头。</div></div>
+<div class="card"><h2>从前面的 A₃ 和 Brauer 星开始</h2><p>A₃ 有 6 个不可分解模、6 条 AR 箭头，没有周期稳定管。三边 Brauer 星的中心重数从 1 改为 2 后，代数从 kC₃/J⁴ 变成 kC₃/J⁷，不可分解模数从 12 增至 21，AR 箭头从 18 增至 36。它们都是有限型：圆柱状的<strong>有限</strong>稳定图不能与无限高度的 tame 管混淆。</p><p>本页保留这三个预设，可以直接切换核对。新的 Dynkin、Euclidean 与 Nakayama 参数由分类公式生成；本页不会把它们标记为已全部通过 GAP/QPA 验证。</p></div>
+</section>
+<section id="methods" class="panel research">
+<div class="card"><h2>程序的分类与精确计算引擎</h2><p><strong>1. Dynkin：</strong>从顶点编号和定向构造 Euler 矩阵 E=I−A。对列维数向量取 Pᵢ=E⁻ᵀeᵢ，C=−E⁻¹Eᵀ。依次生成 τ⁻ᵗPᵢ 的维数向量 C⁻ᵗ dim Pᵢ，直到不再是正根。重复 quiver 中 Q 的每条 i→j 给出 (t,j)→(t,i) 与 (t,i)→(t+1,j)，只保留存在的顶点。箭头重数保留。有限型完备性来自分类定理，不来自“没有继续找到”。</p><p><strong>2. 统一循环 Nakayama / Brauer 星：</strong>令 M(i,ℓ) 的顶为 Sᵢ，组成因子沿循环依次排列，1≤ℓ≤L。不可约箭头为 M(i,ℓ)→M(i,ℓ−1) 和 M(i+1,ℓ−1)→M(i,ℓ)。非投射模满足 τM(i,ℓ)=M(i+1,ℓ)，i 按 n 取模。所有长度 L 的模都投射且内射。Brauer 星取 L=nm+1；此时对称，不能把该对称性推广到任意 L。</p><p><strong>3. Euclidean：</strong>用同一 Coxeter 公式生成 τ⁻ᵗPᵢ 和 τᵗIᵢ 的有限窗口；算出最小正虚根 δ。正则部分记录例外管秩与其余同质管，整体结构是 Γ=P ⊔ (⊔<sub>λ∈ℙ¹(k)</sub> T<sub>λ</sub>) ⊔ I。按当前定向标记所有维数坐标。</p><p><strong>4. 管：</strong>抽象管 ℤA∞/〈τʳ〉的顶点以 (s,ℓ) 标记，s∈ℤ/r、ℓ≥1 是准长度。τ(s,ℓ)=(s+1,ℓ)。同质管 dim Rλ(ℓ)=ℓδ；例外管取准单模 Eₛ，∑ dim Eₛ=δ，长度为 r 的倍数时 dim Eₛ[qr]=qδ。本页对其他例外管顶点只给出准组成因子公式，未选择具体准单模的根坐标。<strong>准长度不等于通常的 Loewy 长度。</strong></p><h3>5. 一般 Brauer 树：完整矩阵计算</h3><p>从树、循环序与重数构造带关系的 quiver。枚举 A/soc A 的所有合法有限 strings，按逆词去重；由于输入是一棵至多一个异常顶点的树，不出现 bands。枚举到扩展队列耗尽后，再加入每条树边对应的真实投射模。每个模都输出一组基与箭头上的 0/1 矩阵。分类保证完整性；计数 e(em+1) 仅作一致性检查，不作提前停止条件。<a href="#ref-tree">[3]</a></p><p>程序精确求解全部 Hom 交换方程，认证 End radical，并在 socle 商的完整目录上算 rad/rad²。再依据几乎可裂序列为每个 P 加入 rad P→P→P/soc P。对非投射 M，令 H[X,Y]=dim Hom(X,Y)，用完整 Hom 列识别 τM：H[X,τM]=Σᵧ Irr(Y,M)·H[X,Y]−H[X,M]+δₓₘ。要求唯一匹配，同时核对 τ(P/soc P)=rad P 与 τ 周期。布局最后从真实图恢复圆柱坐标，绝不从星形模板推测一般树的箭头。</p><div class="callout">程序全部在本地浏览器运行，不调用网络计算、GAP 或大模型。一般 Brauer 树使用 GF(5) 精确线性代数；其他族使用各自分类公式。SVG 与 JSON 均可导出，域、完整性与窗口说明随数据保存。后台计算可取消；超出资源范围直接拒绝，不返回假装完整的截取。</div></div>
+<div class="card"><h2>域与坐标约定</h2><p>页面统一采用有限维右模，箭头上的线性映射与 quiver 同向，维数向量按左侧 Gabriel quiver 的顶点编号排列。一般 Brauer 树引擎明确取 GF(5)，并输出实际模矩阵。其余分类和管的参数说明默认 k 代数闭。A 型区间和分裂循环 Nakayama 的有限型公式也可用于任意域。</p><p>此前 GAP/QPA 使用 GF(5)。不能直接把 ℙ¹(ℂ) 改成 6 个 GF(5) 点并声称得到全部 GF(5) 不可分解正则模：有限域的 Kronecker 正则管还对应高次不可约多项式／ℙ¹ 的闭点，残留域次数会乘入维数。此 HTML 没有提供有限域的管枚举器。<a href="#ref-finite-field">[9]</a></p></div>
+<div class="card"><h2>验证与可扩展性</h2><p id="validation-summary">一般树引擎已在 9 例中与独立 Python、高斯线性代数和真实 GAP 4.16.1 / QPA 1.37 三方核验：200 个模、6,660 对 Hom/Irr、4,266 项 QPA 检查全部通过。模块按实际可逆 Hom 矩阵对齐，τ 与真实 DTr 同构比对，不按维数猜测。还覆盖单边、异常叶子及非默认循环序。原有 A₃、星形 m=1/2 基准保留。此验证为本地实际运行；没有声称每种输入均在云端运行。</p><p>若继续开发一般 gentle / Brauer graph，应增加可验证的 (Q,I) 输入、strings/bands 规范化、同构去重、hooks/cohooks、Green walks 与投射模附着，再输出参数化的分支目录；τ-tilting 则是在可靠的 τ 与 Hom 计算上增加搜索，不能由一张形状图直接得出。</p></div>
+<div class="card"><h2>文献与定理依据</h2><ol class="source-list">
+<li id="ref-dynkin"><a href="https://arxiv.org/abs/1602.06773" target="_blank" rel="noopener">C. M. Ringel — The Representation Theory of Dynkin Quivers. Three Contributions</a>；另见 <a href="https://www.math.uni-bielefeld.de/~hubery/pdf-files/RHAlg.pdf" target="_blank" rel="noopener">A. Hubery — Ringel–Hall Algebras</a> 中的 Gabriel、Coxeter 与 hereditary 分类。</li>
+<li id="ref-nakayama"><a href="https://link.springer.com/article/10.1007/s00209-024-03662-x" target="_blank" rel="noopener">M. Herschend, S. Kvamme &amp; L. Vaso — nℤ-cluster tilting subcategories for Nakayama algebras</a>，§2，尤其 Propositions 2.5、2.10；本文的右模编号已相应调整。</li>
+<li id="ref-tree"><a href="https://arxiv.org/html/1612.00061#S2.SS4" target="_blank" rel="noopener">S. Schroll — Brauer graph algebras</a>，Remark 2.5 的 Brauer 星；<a href="https://arxiv.org/pdf/1304.5223" target="_blank" rel="noopener">A. Chan — Two-term tilting complexes and simple-minded systems of self-injective Nakayama algebras</a>，§2.2 的树代数稳定 AR 图与配置；<a href="https://sites.math.washington.edu/~naehrn/classification_liftable.pdf" target="_blank" rel="noopener">G. Hiss &amp; N. Naehrig — The classification of the indecomposable liftable modules in blocks with cyclic defect groups</a> 中的 socle 商与 strings；<a href="https://arxiv.org/html/1509.02478" target="_blank" rel="noopener">Duffield §2–3</a> 的关系、投射及 AR 附着。</li>
+<li id="ref-euclidean"><a href="https://www.math.uni-bielefeld.de/~wcrawley/quivlecs.pdf" target="_blank" rel="noopener">W. Crawley-Boevey — Lectures on Representations of Quivers</a>，预投射／正则／预内射分解与第 35 页管秩表；<a href="https://arxiv.org/html/1703.07906" target="_blank" rel="noopener">H. Asashiba, K. Nakashima &amp; M. Yoshiwaki — Decomposition theory of modules: the case of Kronecker algebra</a>，Theorem 2.1 的显式表示。</li>
+<li id="ref-string"><a href="https://www.tandfonline.com/doi/abs/10.1080/00927878708823416" target="_blank" rel="noopener">M. C. R. Butler &amp; C. M. Ringel — Auslander–Reiten sequences with few middle terms and applications to string algebras (1987)</a>；band 的同构等价见 <a href="https://arxiv.org/abs/1308.6410" target="_blank" rel="noopener">W. Crawley-Boevey — Classification of modules for infinite-dimensional string algebras</a>，Theorem 1.1。</li>
+<li id="ref-graph"><a href="https://arxiv.org/html/1509.02478" target="_blank" rel="noopener">D. Duffield — Auslander–Reiten Components of Symmetric Special Biserial Algebras</a>，Theorems 1.1、4.1、4.2；本页尚未实现一般 Brauer graph 的分支算法。</li>
+<li id="ref-tubular"><a href="https://webusers.imj-prg.fr/~bernhard.keller/ictp2006/lecturenotes/lenzing2.pdf" target="_blank" rel="noopener">H. Lenzing — Hereditary Categories, Lectures 3, 4 and 5</a>，§6.7 的 tubular 权型与斜率；注意区分 coh(X) 与 mod-Λ。</li>
+<li id="ref-wild"><a href="https://arxiv.org/html/1612.00061#S5.SS1" target="_blank" rel="noopener">Schroll，§5.1</a> 的有限／tame／wild 定义与区别。</li>
+<li id="ref-finite-field"><a href="https://real.mtak.hu/186932/1/amapn23_01.pdf" target="_blank" rel="noopener">C. Szántó — Kronecker 模的有限域参数说明</a>，§1：不可约多项式、次数与 regular indecomposables。</li>
+</ol><p class="micro">资料核对日期：2026-10-15。页面的范围标签是软件功能说明，不是对所有 tame 代数作统一分类的断言。</p></div>
+</section>
+<footer><span>AR Quiver Atlas · Quiver Representation Lab</span><span id="footer-convention">mod-A · 右模 · 范围与域假设随图导出</span></footer>
+</main><div id="status" role="status" hidden></div>
+<script id="hereditary-model">
+/*
+ * HereditaryAtlas: exact integer AR combinatorics for split hereditary ADE
+ * and Euclidean path algebras. Browser-safe: paste this entire IIFE into a
+ * script; it exposes globalThis.HereditaryAtlas. No libraries or network.
+ *
+ * CONVENTION: dimension vectors are columns; a right-module arrow follows Q.
+ * A[u][v] counts u -> v, E=I-A, H=E^-1 counts directed paths (incl. length 0).
+ * P_i=H^T e_i, I_i=H e_i; tau=-H E^T, tau^-1=-H^T E.
+ * For u -> v, preprojective arrows are (t,v)->(t,u), (t,u)->(t+1,v).
+ * Preinjective arrows are (t,v)->(t,u), (t+1,u)->(t,v).
+ * Sources: W. Crawley-Boevey, Representations of Algebras (2025), sections
+ * 3.3-3.4, https://www.math.uni-bielefeld.de/~wcrawley/25RA/Representations_of_Algebras_final_version_2025-07.pdf
+ * C. M. Ringel, Representation Theory I, section 23.9,
+ * https://www.math.uni-bielefeld.de/~ringel/opus/rs1.pdf
+ *
+ * API:
+ * dynkin(type, n, orientation='forward') -> complete finite AR graph.
+ * affine(type,n,p,q,depth=8,orientation='forward') -> TWO truncated graphs,
+ *    with flattened nodes/edges and components.preprojective/preinjective.
+ *    For A: n=p+q-1; supply n=null to infer it. Omitted p,q mean p=1,q=n.
+ * affineA(p,q,depth=8,orientation='forward') is a convenience wrapper.
+ * dynkinQuiver / affineQuiver return {vertices:number, edges:[[u,v],...]}.
+ * orient(quiver,mode) returns a copy. mode is forward/reverse/bipartite
+ *    ('alternating' aliases bipartite), or one boolean flip per input edge.
+ * build(quiver,{finite,depth=8,component='preprojective'}) -> one graph.
+ *    Only connected ADE/Euclidean underlying graphs are accepted. Cyclic
+ *    orientations, loops, unsafe integers, and unsupported graphs are errors.
+ *
+ * NODE: {id,vertex,layer,component,dimension,label,projective,injective,
+ *        tauId,tauInverseId,tauOutside,tauInverseOutside,boundary,index}.
+ * EDGE: {source:id,target:id,multiplicity,kind:'slice'|'mesh'}.
+ * Parallel quiver arrows become one edge with multiplicity (Kronecker: 2).
+ * GRAPH: {quiver,nodes,edges,matrices,classification,component,complete,
+ *         depth,scope,regularIncluded:false}. depth counts layers INCLUDING 0.
+ * type,n,family,delta are top-level metadata; delta is null for finite type
+ * and the minimal positive imaginary root for affine type. quiver.positions
+ * optionally supplies [x,y] per vertex in unscaled layout units.
+ * matrices={euler,pathCounts,coxeter,inverseCoxeter,projectives,injectives}:
+ * projectives[i]/injectives[i] are dimension vectors, other fields matrices.
+ * A null translation ID can mean actual zero or outside the displayed window;
+ * the corresponding ...Outside boolean distinguishes these cases.
+ * An affine result never claims to be the complete AR quiver: regular tubes
+ * are NOT included. No matrices for individual representations/Hom maps are
+ * constructed; these are theorem-based dimension vectors and AR arrows.
+ */
+(function (root) {
+  'use strict';
+  const fail = message => { throw new Error(message); };
+  const integer = (value, label='integer') => {
+    if (!Number.isSafeInteger(value)) fail(`${label} exceeds exact JavaScript integer arithmetic`);
+    return value;
+  };
+  const positiveInteger = (value, label) => {
+    if (!Number.isSafeInteger(value) || value < 1) fail(`${label} must be a positive integer`);
+    return value;
+  };
+  const zeros = n => Array.from({length:n}, () => Array(n).fill(0));
+  const identity = n => zeros(n).map((row,i) => row.map((_,j) => +(i===j)));
+  const transpose = a => a[0].map((_,j) => a.map(row => row[j]));
+  const dot = (a,b) => a.reduce((sum,x,i) => integer(sum+integer(x*b[i])),0);
+  const multiply = (a,b) => { const bt=transpose(b); return a.map(row=>bt.map(col=>dot(row,col))); };
+  const mv = (a,v) => a.map(row=>dot(row,v));
+  const negative = a => a.map(row=>row.map(x=>x===0?0:-x));
+  const key = v => v.join(',');
+  const positive = v => v.every(x=>x>=0) && v.some(x=>x>0);
+
+  function normalize(quiver) {
+    const n=Array.isArray(quiver.vertices)?quiver.vertices.length:quiver.vertices;
+    positiveInteger(n,'vertex count');
+    if(n>100) fail('This interactive model supports at most 100 vertices');
+    if(!Array.isArray(quiver.edges)) fail('quiver.edges must be an array');
+    const edges=quiver.edges.map(edge=>{
+      if(!Array.isArray(edge)||edge.length!==2) fail('Every arrow must be [source,target]');
+      const [u,v]=edge;
+      if(!Number.isInteger(u)||!Number.isInteger(v)||u<0||v<0||u>=n||v>=n||u===v)
+        fail('Arrows require distinct, valid zero-based vertices');
+      return [u,v];
+    });
+    const incoming=Array(n).fill(0),out=Array.from({length:n},()=>[]);
+    for(const [u,v] of edges){incoming[v]++;out[u].push(v);}
+    const ready=[],topological=[];
+    incoming.forEach((d,v)=>{if(!d)ready.push(v);});
+    for(let h=0;h<ready.length;h++){
+      const u=ready[h];topological.push(u);
+      for(const v of out[u])if(--incoming[v]===0)ready.push(v);
+    }
+    if(topological.length!==n) fail('The quiver has an oriented cycle; hereditary construction requires an acyclic quiver');
+    return {vertices:n,edges,name:quiver.name||'Q',topological,
+      positions:Array.isArray(quiver.positions)?quiver.positions.map(p=>p.slice()):null};
+  }
+
+  function classification(quiver) {
+    const {vertices:n,edges}=normalize(quiver);
+    const neighbors=Array.from({length:n},()=>new Set()),multiplicities=new Map();
+    for(const [u,v] of edges){
+      neighbors[u].add(v);neighbors[v].add(u);
+      const k=[Math.min(u,v),Math.max(u,v)].join(',');
+      multiplicities.set(k,(multiplicities.get(k)||0)+1);
+    }
+    const seen=new Set([0]),todo=[0];
+    for(let h=0;h<todo.length;h++)for(const v of neighbors[todo[h]])if(!seen.has(v)){seen.add(v);todo.push(v);}
+    if(seen.size!==n) fail('Use a connected Dynkin or Euclidean quiver');
+    const degree=neighbors.map(x=>x.size),max=Math.max(...degree);
+    if(n===2&&edges.length===2&&multiplicities.size===1)return {family:'affine',type:'A',n:1};
+    if([...multiplicities.values()].some(m=>m!==1)) fail('Only ADE/Euclidean graphs and the two-arrow Kronecker quiver are supported');
+    if(edges.length===n&&degree.every(d=>d===2))return {family:'affine',type:'A',n:n-1};
+    if(edges.length!==n-1)fail('The underlying graph is not an ADE or Euclidean diagram');
+    if(max<=2)return {family:'dynkin',type:'A',n};
+    const forks=degree.map((d,i)=>d>=3?i:-1).filter(i=>i>=0);
+    if(forks.length===1&&degree[forks[0]]===4&&n===5)return {family:'affine',type:'D',n:4};
+    if(forks.length===2&&max===3){
+      // Affine D: each trivalent vertex has two adjacent leaves; their other
+      // incident edges form the connecting chain, of arbitrary positive length.
+      if(forks.every(v=>[...neighbors[v]].filter(w=>degree[w]===1).length===2))
+        return {family:'affine',type:'D',n:n-1};
+    }
+    if(forks.length===1&&max===3){
+      const center=forks[0];
+      const arms=[...neighbors[center]].map(first=>{
+        let previous=center,current=first,length=1;
+        while(degree[current]===2){const next=[...neighbors[current]].find(v=>v!==previous);previous=current;current=next;length++;}
+        return length;
+      }).sort((a,b)=>a-b);
+      const signature=arms.join(',');
+      if(arms[0]===1&&arms[1]===1)return {family:'dynkin',type:'D',n};
+      if(['1,2,2','1,2,3','1,2,4'].includes(signature))return {family:'dynkin',type:'E',n};
+      if(['2,2,2','1,3,3','1,2,5'].includes(signature))return {family:'affine',type:'E',n:n-1};
+    }
+    fail('The underlying graph is not an ADE or Euclidean diagram');
+  }
+
+  function minimalImaginaryRoot(quiver) {
+    const q=normalize(quiver),kind=classification(q),n=q.vertices;
+    if(kind.family!=='affine')return null;
+    const neighbors=Array.from({length:n},()=>new Set());
+    for(const [u,v]of q.edges){neighbors[u].add(v);neighbors[v].add(u);}
+    let delta;
+    if(kind.type==='A')delta=Array(n).fill(1);
+    else if(kind.type==='D')delta=neighbors.map(ns=>ns.size===1?1:2);
+    else {
+      const center=neighbors.findIndex(ns=>ns.size===3);
+      const arms=[...neighbors[center]].map(first=>{
+        const path=[];let previous=center,current=first;
+        while(true){path.push(current);const next=[...neighbors[current]].find(v=>v!==previous);
+          if(next==null)break;previous=current;current=next;}
+        return path;
+      });
+      const gcd=(a,b)=>b?gcd(b,a%b):a;
+      const central=arms.reduce((v,arm)=>v*(arm.length+1)/gcd(v,arm.length+1),1);
+      delta=Array(n).fill(0);delta[center]=central;
+      for(const arm of arms)arm.forEach((v,r)=>{delta[v]=central*(arm.length-r)/(arm.length+1);});
+      const divisor=delta.reduce(gcd);delta=delta.map(v=>integer(v/divisor));
+    }
+    const equation=delta.map(v=>2*v);
+    for(const [u,v]of q.edges){equation[u]-=delta[v];equation[v]-=delta[u];}
+    if(!delta.every(v=>Number.isSafeInteger(v)&&v>0)||equation.some(x=>x!==0))fail('Invalid affine null root');
+    return delta;
+  }
+
+  function orient(quiver, mode='forward') {
+    const q={...quiver,edges:quiver.edges.map(e=>e.slice())};
+    if(mode==='forward'||mode==='default'||mode==null)return q;
+    if(mode==='reverse'){q.edges=q.edges.map(([u,v])=>[v,u]);return q;}
+    if(Array.isArray(mode)){
+      if(mode.length!==q.edges.length||mode.some(x=>typeof x!=='boolean'))fail('Orientation flips must be one boolean per arrow');
+      q.edges=q.edges.map(([u,v],i)=>mode[i]?[v,u]:[u,v]);return q;
+    }
+    if(mode==='bipartite'||mode==='alternating'){
+      const neighbors=Array.from({length:q.vertices},()=>[]),colors=Array(q.vertices).fill(-1);
+      for(const [u,v] of q.edges){neighbors[u].push(v);neighbors[v].push(u);}
+      const todo=[0];colors[0]=0;
+      for(let h=0;h<todo.length;h++)for(const v of neighbors[todo[h]]){
+        if(colors[v]===-1){colors[v]=1-colors[todo[h]];todo.push(v);}
+        else if(colors[v]===colors[todo[h]])fail('This graph is not bipartite; choose an acyclic orientation instead');
+      }
+      q.edges=q.edges.map(([u,v])=>colors[u]===0?[u,v]:[v,u]);return q;
+    }
+    fail(`Unknown orientation: ${mode}`);
+  }
+
+  function dynkinQuiver(type,n,orientation='forward') {
+    type=String(type).toUpperCase();positiveInteger(n,'rank');
+    if(n>100)fail('This interactive model supports at most 100 vertices');
+    let edges=[],positions=Array.from({length:n},(_,i)=>[i,0]);
+    if(type==='A'){for(let i=0;i<n-1;i++)edges.push([i,i+1]);}
+    else if(type==='D'){
+      if(n<4)fail('D_n requires n>=4');
+      for(let i=0;i<n-3;i++)edges.push([i,i+1]);
+      edges.push([n-3,n-2],[n-3,n-1]);
+      positions[n-2]=[n-2,-1];positions[n-1]=[n-2,1];
+    }else if(type==='E'&&[6,7,8].includes(n)){
+      for(let i=0;i<n-2;i++)edges.push([i,i+1]);
+      edges.push([2,n-1]);positions[n-1]=[2,-1];
+    }else fail('Supported finite diagrams: A_n, D_n (n>=4), E_6,E_7,E_8');
+    return orient({vertices:n,edges,positions,name:`${type}${n}`},orientation);
+  }
+
+  function affineQuiver(type,n,p,q,orientation='forward') {
+    type=String(type).toUpperCase();let edges=[],vertices,name,positions;
+    if(type==='A'){
+      if(p==null&&q==null){p=1;q=n==null?1:n;}
+      positiveInteger(p,'p');positiveInteger(q,'q');vertices=p+q;
+      if(vertices>100)fail('This interactive model supports at most 100 vertices');
+      if(n!=null&&n!==vertices-1)fail('For affine A, rank n must equal p+q-1 (or use n=null)');
+      // Two disjoint directed paths of lengths p,q from vertex 0 to one sink.
+      // At p=q=1 these are two distinct parallel arrows, not a directed cycle.
+      const sink=vertices-1;
+      for(const path of [[0,...Array.from({length:p-1},(_,i)=>i+1),sink],
+                         [0,...Array.from({length:q-1},(_,i)=>p+i),sink]])
+        for(let i=0;i<path.length-1;i++)edges.push([path[i],path[i+1]]);
+      positions=Array.from({length:vertices},()=>[0,0]);
+      const width=Math.max(p,q);positions[sink]=[width,0];
+      for(let r=1;r<p;r++)positions[r]=[width*r/p,-1];
+      for(let r=1;r<q;r++)positions[p+r-1]=[width*r/q,1];
+      name=`A~${vertices-1}(${p},${q})`;
+    }else if(type==='D'){
+      positiveInteger(n,'rank');if(n<4)fail('Affine D_n requires n>=4');vertices=n+1;
+      if(vertices>100)fail('This interactive model supports at most 100 vertices');
+      edges=[[0,2],[1,2]];
+      for(let i=2;i<n-2;i++)edges.push([i,i+1]);
+      edges.push([n-2,n-1],[n-2,n]);name=`D~${n}`;
+      positions=Array.from({length:vertices},(_,i)=>[i-1,0]);
+      positions[0]=[0,-1];positions[1]=[0,1];
+      positions[n-1]=[n-2,-1];positions[n]=[n-2,1];
+    }else if(type==='E'&&[6,7,8].includes(n)){
+      const arms={6:[2,2,2],7:[1,3,3],8:[1,2,5]}[n];
+      vertices=n+1;let next=1;positions=[[0,0]];
+      arms.forEach((length,a)=>{let previous=0;const direction=[[-1,0],[1,0],[0,-1]][a];
+        for(let i=0;i<length;i++){edges.push([previous,next]);positions[next]=direction.map(x=>x*(i+1));previous=next++;}});
+      name=`E~${n}`;
+    }else fail('Supported affine diagrams: A~(p,q), D~_n (n>=4), E~_6,E~_7,E~_8');
+    return orient({vertices,edges,positions,name},orientation);
+  }
+
+  function matrices(quiver) {
+    const q=normalize(quiver),n=q.vertices,H=identity(n),E=identity(n);
+    const out=Array.from({length:n},()=>[]);
+    for(const [u,v]of q.edges){E[u][v]--;out[u].push(v);}
+    for(const u of q.topological)for(const v of out[u])for(let s=0;s<n;s++)H[s][v]=integer(H[s][v]+H[s][u]);
+    return {euler:E,pathCounts:H,coxeter:negative(multiply(H,transpose(E))),
+      inverseCoxeter:negative(multiply(transpose(H),E)),
+      projectives:H.map(row=>row.slice()),injectives:transpose(H)};
+  }
+
+  function tits(quiver,v) {
+    const q=normalize(quiver);
+    if(v.length!==q.vertices)fail('Dimension vector has incorrect length');
+    let value=dot(v,v);
+    for(const [u,w]of q.edges)value=integer(value-integer(v[u]*v[w]));
+    return value;
+  }
+
+  function build(quiver, options={}) {
+    // Also accept build(q,depth,finite) for a simple browser integration.
+    if(typeof options==='number')options={depth:options,finite:arguments[2]};
+    const q=normalize(quiver),kind=classification(q),n=q.vertices;
+    const finite=options.finite==null?kind.family==='dynkin':!!options.finite;
+    if(finite!==(kind.family==='dynkin'))fail('finite flag does not match the underlying Dynkin/Euclidean diagram');
+    const component=options.component||'preprojective';
+    if(!['preprojective','preinjective'].includes(component))fail('Unknown AR component');
+    const depth=options.depth==null?8:positiveInteger(options.depth,'depth');
+    if(depth>1000)fail('At most 1000 layers may be requested');
+    const mat=matrices(q),pre=component==='preprojective';
+    const operator=pre?mat.inverseCoxeter:mat.coxeter;
+    const initial=pre?mat.projectives:mat.injectives;
+    const projectiveKeys=new Set(mat.projectives.map(key)),injectiveKeys=new Set(mat.injectives.map(key));
+    const nodes=[],lookup=new Map(),prefix=pre?'p':'i';
+    const id=(layer,vertex)=>`${prefix}:${layer}:${vertex}`;
+    // A_n needs at most n layers; the safe finite bound below also covers D/E.
+    const maxLayers=finite?Math.max(64,2*n+2):depth;
+    let allStopped=true;
+    for(let vertex=0;vertex<n;vertex++){
+      let dimension=initial[vertex].slice(),stopped=false;
+      for(let layer=0;layer<maxLayers;layer++){
+        if(!positive(dimension)){
+          if(!dimension.every(x=>x<=0)||!dimension.some(x=>x<0))fail('Coxeter orbit has unexpected mixed or zero signs');
+          stopped=true;break;
+        }
+        if(tits(q,dimension)!==1)fail('Generated vector is not a real root');
+        const node={id:id(layer,vertex),vertex,layer,component,dimension:dimension.slice(),
+          label:pre?(layer?`τ^(-${layer})P${vertex+1}`:`P${vertex+1}`):(layer?`τ^${layer}I${vertex+1}`:`I${vertex+1}`),
+          projective:projectiveKeys.has(key(dimension)),injective:injectiveKeys.has(key(dimension))};
+        nodes.push(node);lookup.set(node.id,node);dimension=mv(operator,dimension);
+      }
+      if(!stopped&&finite)fail('A finite Coxeter orbit did not terminate within the proven safe layer bound');
+      allStopped=allStopped&&stopped;
+    }
+    nodes.sort((a,b)=>a.layer-b.layer||a.vertex-b.vertex);
+    nodes.forEach((node,index)=>{
+      const tauLayer=node.layer+(pre?-1:1),inverseLayer=node.layer+(pre?1:-1);
+      node.tauId=node.projective?null:(lookup.has(id(tauLayer,node.vertex))?id(tauLayer,node.vertex):null);
+      node.tauInverseId=node.injective?null:(lookup.has(id(inverseLayer,node.vertex))?id(inverseLayer,node.vertex):null);
+      node.tauOutside=!node.projective&&node.tauId===null;
+      node.tauInverseOutside=!node.injective&&node.tauInverseId===null;
+      node.boundary=node.tauOutside||node.tauInverseOutside;node.index=index;
+    });
+    const edgeMap=new Map();
+    function add(source,target,edgeKind){
+      if(!lookup.has(source)||!lookup.has(target))return;
+      const k=source+'>'+target;
+      if(edgeMap.has(k))edgeMap.get(k).multiplicity++;
+      else edgeMap.set(k,{source,target,multiplicity:1,kind:edgeKind});
+    }
+    const layers=Math.max(...nodes.map(x=>x.layer))+1;
+    for(let t=0;t<layers;t++)for(const [u,v]of q.edges){
+      add(id(t,v),id(t,u),'slice');
+      if(pre)add(id(t,u),id(t+1,v),'mesh');
+      else add(id(t+1,u),id(t,v),'mesh');
+    }
+    return {quiver:q,nodes,edges:[...edgeMap.values()],matrices:mat,classification:kind,
+      component,type:kind.type,n:kind.n,family:kind.family,delta:minimalImaginaryRoot(q),
+      complete:finite&&allStopped,depth:layers,regularIncluded:false,
+      scope:finite?'Complete finite Dynkin AR quiver':`${component} component, layers 0 through ${depth-1}; regular tubes omitted`};
+  }
+
+  function dynkin(type,n,orientation='forward') {return build(dynkinQuiver(type,n,orientation),{finite:true});}
+  function affine(type,n,p,q,depth=8,orientation='forward') {
+    const quiver=affineQuiver(type,n,p,q,orientation);
+    const preprojective=build(quiver,{finite:false,depth,component:'preprojective'});
+    const preinjective=build(quiver,{finite:false,depth,component:'preinjective'});
+    return {quiver:preprojective.quiver,nodes:[...preprojective.nodes,...preinjective.nodes].map((node,index)=>({...node,index})),
+      edges:[...preprojective.edges,...preinjective.edges],components:{preprojective,preinjective},
+      matrices:preprojective.matrices,classification:preprojective.classification,
+      type:preprojective.type,n:preprojective.n,family:'affine',delta:preprojective.delta,
+      complete:false,depth,regularIncluded:false,
+      scope:'Finite windows in the preprojective and preinjective components; ALL regular tubes omitted'};
+  }
+  const api={version:'1.0.0',dynkin,affine,affineA:(p,q,depth=8,orientation='forward')=>affine('A',null,p,q,depth,orientation),
+    dynkinQuiver,affineQuiver,orient,build,matrices,tits,minimalImaginaryRoot,classify:classification};
+  root.HereditaryAtlas=Object.freeze(api);
+  if(typeof module!=='undefined'&&module.exports)module.exports=api;
+})(globalThis);
+
+</script>
+<script id="atlas-model">
+/* Pure classification models. No finite search is used to infer completeness. */
+(function (root) {
+  'use strict';
+  const integer = (v, min, max, name) => {
+    if (!Number.isInteger(v) || v < min || v > max) throw new Error(name + ' 超出范围');
+    return v;
+  };
+  function cyclic(n, L, stable = false) {
+    integer(n, 1, 12, 'n'); integer(L, 2, 73, 'L');
+    const nodes = [], edges = [], limit = stable ? L - 1 : L;
+    const id = (i, l) => `M${((i % n) + n) % n + 1}_${l}`;
+    for (let l = 1; l <= limit; l++) for (let i = 0; i < n; i++) {
+      const dimension = Array(n).fill(0);
+      for (let s = 0; s < l; s++) dimension[(i + s) % n]++;
+      nodes.push({id: id(i, l), label: `M(${i + 1},${l})`, top: i, length: l,
+        dimension, projective: l === L, injective: l === L,
+        tauId: l < L ? id(i + 1, l) : null,
+        endDimension: Math.ceil(l / n), column: i, row: l, kind: 'cyclic'});
+    }
+    for (let l = 2; l <= limit; l++) for (let i = 0; i < n; i++) {
+      edges.push({source: id(i, l), target: id(i, l - 1), kind: 'quotient', multiplicity: 1});
+      edges.push({source: id(i + 1, l - 1), target: id(i, l), kind: 'inclusion', multiplicity: 1});
+    }
+    return {nodes, edges, complete: !stable, stable, n, L, family: 'cyclic',
+      fullCount: n * L, dimension: n * L,
+      quiver: {vertices: n, edges: Array.from({length: n}, (_, i) => [i, (i + 1) % n])}};
+  }
+  function tube(rank, depth, delta, parameter = 'λ') {
+    integer(rank, 1, 12, '管秩'); integer(depth, 2, 16, '截取高度');
+    const nodes = [], edges = [];
+    const id = (s, l) => `T${(s % rank) + 1}_${l}`;
+    for (let l = 1; l <= depth; l++) for (let s = 0; s < rank; s++) {
+      const dimension = l % rank === 0 ? delta.map(x => x * l / rank) : null;
+      nodes.push({id: id(s, l), label: rank === 1 ? `R(${parameter},${l})` : `E${s + 1}[${l}]`,
+        quasiLength: l, length: l, column: s, row: l,
+        dimension, tauId: id(s + 1, l), projective: false, injective: false,
+        kind: 'tube', rank, parameter, boundary: l === depth});
+    }
+    for (let l = 2; l <= depth; l++) for (let s = 0; s < rank; s++) {
+      edges.push({source: id(s, l), target: id(s, l - 1), kind: 'quotient', multiplicity: 1});
+      edges.push({source: id(s + 1, l - 1), target: id(s, l), kind: 'inclusion', multiplicity: 1});
+    }
+    return {nodes, edges, n: rank, L: depth, family: 'tube', complete: false,
+      rank, parameter, delta, boundary: '上方无限延伸；当前只画准长度 1…' + depth};
+  }
+  function tubeRanks(type, n, p = 1, q = 1) {
+    const raw = type === 'A' ? [p, q] : type === 'D' ? [2, 2, n - 2] :
+      type === 'E6' ? [2, 3, 3] : type === 'E7' ? [2, 3, 4] : type === 'E8' ? [2, 3, 5] : [];
+    return raw.filter(x => x > 1);
+  }
+  root.QuiverAtlas = Object.freeze({cyclic, tube, tubeRanks, version: '1.0.0'});
+})(globalThis);
+
+</script>
+<script id="brauer-tree-model">
+/* General split Brauer tree algebras over GF(5).
+ * Nonprojectives: every finite string of A/soc(A), modulo inversion.
+ * AR arrows: exact rad/rad^2 over GF(5), followed by the projective attachments.
+ * No dimension-vector or graph-neighbourhood guess is used to identify tau.
+ */
+(function (root) {
+  'use strict';
+  const PRIME = 5;
+  const mod = x => ((x % PRIME) + PRIME) % PRIME;
+  const inverse = [0, 1, 3, 2, 4];
+  const assert = (ok, message) => { if (!ok) throw new Error(message); };
+  const sum = xs => xs.reduce((a, b) => a + b, 0);
+  const arrayEqual = (a, b) => a.length === b.length && a.every((x, i) => x === b[i]);
+  function compare(a, b) {
+    for (let i = 0; i < Math.min(a.length, b.length); i++) if (a[i] !== b[i]) return a[i] - b[i];
+    return a.length - b.length;
+  }
+  const reverseWord = word => word.slice().reverse().map(x => -x);
+  class UnionFind {
+    constructor(n) { this.p = Array.from({length: n}, (_, i) => i); this.size = Array(n).fill(1); }
+    find(x) { while (this.p[x] !== x) { this.p[x] = this.p[this.p[x]]; x = this.p[x]; } return x; }
+    union(a, b) { a = this.find(a); b = this.find(b); if (a === b) return; if (this.size[a] < this.size[b]) [a, b] = [b, a]; this.p[b] = a; this.size[a] += this.size[b]; }
+  }
+  // Incremental exact row-space basis; used for both rank and rad^2.
+  class RowSpace {
+    constructor(n) { this.n = n; this.rows = new Map(); }
+    add(vector) {
+      const row = vector.map(mod);
+      for (let p = 0; p < this.n; p++) {
+        if (!row[p]) continue;
+        const old = this.rows.get(p);
+        if (old) { const c = row[p]; for (let j = p; j < this.n; j++) row[j] = mod(row[j] - c * old[j]); }
+        else { const c = inverse[row[p]]; for (let j = p; j < this.n; j++) row[j] = mod(c * row[j]); this.rows.set(p, row); return true; }
+      }
+      return false;
+    }
+    get rank() { return this.rows.size; }
+  }
+  function rank(rows, columns) { const space = new RowSpace(columns); rows.forEach(row => space.add(row)); return space.rank; }
+  function normalizedInput(input) {
+    assert(input && Array.isArray(input.edges), '需要树的边列表。');
+    const edges = input.edges.map(edge => {
+      assert(Array.isArray(edge) && edge.length === 2, '每条边必须恰有两个端点。');
+      return edge.map(String);
+    });
+    const e = edges.length, m = input.multiplicity === undefined ? 1 : Number(input.multiplicity);
+    assert(Number.isInteger(e) && e >= 1 && e <= 10, '当前精确引擎支持 1–10 条边。');
+    assert(Number.isInteger(m) && m >= 1 && m <= 8, '当前精确引擎支持异常重数 1–8。');
+    assert(e * (e * m + 1) <= 150, '当前资源上限是 150 个不可分解模；请减少边数或重数。');
+    assert(input.field === undefined || Number(input.field) === PRIME, '当前精确线性代数使用 GF(5)。');
+    const vertices = [...new Set(edges.flat())], vertexIndex = new Map(vertices.map((v, i) => [v, i]));
+    assert(vertices.length === e + 1, '输入必须是树：顶点数应为边数加一。');
+    const uf = new UnionFind(vertices.length), incident = Object.fromEntries(vertices.map(v => [v, []]));
+    edges.forEach(([u, v], i) => {
+      assert(u !== v, '树不允许自环。');
+      assert(uf.find(vertexIndex.get(u)) !== uf.find(vertexIndex.get(v)), '输入包含环或重复边。');
+      uf.union(vertexIndex.get(u), vertexIndex.get(v)); incident[u].push(i); incident[v].push(i);
+    });
+    assert(vertices.every(v => uf.find(vertexIndex.get(v)) === uf.find(0)), '树必须连通。');
+    const exceptionalVertex = input.exceptionalVertex === undefined || input.exceptionalVertex === null ? vertices[0] : String(input.exceptionalVertex);
+    assert(vertices.includes(exceptionalVertex), '异常顶点必须是树中的顶点。');
+    const orders = Object.create(null), multiplicities = Object.create(null);
+    for (const v of vertices) {
+      const supplied = input.orders && Object.prototype.hasOwnProperty.call(input.orders, v) ? input.orders[v] : incident[v];
+      assert(Array.isArray(supplied), `顶点 ${v} 的循环序必须是数组。`);
+      const order = supplied.slice();
+      assert(order.every(Number.isInteger) && arrayEqual(order.slice().sort((a, b) => a - b), incident[v].slice().sort((a, b) => a - b)), `顶点 ${v} 的循环序必须恰含其所有关联边一次（边 ID 从 0 开始）。`);
+      orders[v] = order; multiplicities[v] = v === exceptionalVertex ? m : 1;
+    }
+    return {edges, vertices, orders, multiplicities, exceptionalVertex, multiplicity: m, field: PRIME};
+  }
+  function algebraFromTree(tree) {
+    const arrows = [], byVertex = Object.create(null), powers = new Map(), e = tree.edges.length;
+    for (const v of tree.vertices) {
+      const order = tree.orders[v], weight = tree.multiplicities[v];
+      if (order.length * weight === 1) continue;
+      byVertex[v] = order.map((source, j) => {
+        const id = arrows.length; arrows.push({id, label: 'a' + (id + 1), source, target: order[(j + 1) % order.length], treeVertex: v}); return id;
+      });
+      order.forEach((edge, j) => powers.set(edge + '|' + v, Array.from({length: weight * order.length}, (_, s) => byVertex[v][(j + s) % order.length])));
+    }
+    const special = e === 1 && tree.multiplicity === 1;
+    if (special) arrows.push({id: 0, label: 'a1', source: 0, target: 0, treeVertex: tree.vertices[0]});
+    const zeroPaths = [], quotientZeroPaths = [], commutativity = [], allowed = new Set();
+    for (const ids of Object.values(byVertex)) ids.forEach((a, i) => allowed.add(a + ',' + ids[(i + 1) % ids.length]));
+    if (special) allowed.add('0,0');
+    for (const a of arrows) for (const b of arrows) if (a.target === b.source && !allowed.has(a.id + ',' + b.id)) {
+      zeroPaths.push([a.id, b.id]); quotientZeroPaths.push([a.id, b.id]);
+    }
+    if (special) { zeroPaths.push([0, 0]); quotientZeroPaths.push([0]); }
+    else tree.edges.forEach(([u, v], edge) => {
+      const left = powers.get(edge + '|' + u), right = powers.get(edge + '|' + v);
+      if (left && right) commutativity.push({left: left.slice(), right: right.slice()});
+      for (const p of [left, right]) if (p) { quotientZeroPaths.push(p.slice()); zeroPaths.push(p.concat(p[0])); }
+    });
+    return {quiver: {vertices: e, arrows, edges: arrows.map(a => [a.source, a.target])},
+      relations: {zeroPaths, commutativity}, quotientRelations: {zeroPaths: quotientZeroPaths}, powers, special};
+  }
+  function canonicalWord(word, startVertex) {
+    if (!word.length) return {id: 'S' + (startVertex + 1), word: [], reversed: false};
+    const reverse = reverseWord(word), reversed = compare(reverse, word) < 0, result = reversed ? reverse : word.slice();
+    return {id: 'W:' + result.join(','), word: result, reversed};
+  }
+  function nodeFromWord(word, startVertex, quiver) {
+    const basisVertices = [startVertex], arrowMaps = quiver.arrows.map(() => []);
+    let vertex = startVertex;
+    word.forEach((letter, j) => {
+      const a = quiver.arrows[Math.abs(letter) - 1];
+      assert(vertex === (letter > 0 ? a.source : a.target), '字符串连接失败。');
+      vertex = letter > 0 ? a.target : a.source;
+      basisVertices.push(vertex); arrowMaps[a.id].push(letter > 0 ? [j, j + 1] : [j + 1, j]);
+    });
+    const key = canonicalWord(word, startVertex);
+    return enrichNode({id: key.id, label: word.length ? word.map(x => (x < 0 ? 'a' + (-x) + '⁻¹' : 'a' + x)).join('·') : 'S' + (startVertex + 1),
+      word: word.slice(), startVertex, basisVertices, arrowMaps, projective: false, injective: false, kind: 'brauer-tree-string'}, quiver);
+  }
+  function enrichNode(node, quiver) {
+    const e = quiver.vertices, d = node.basisVertices.length;
+    node.dimension = Array(e).fill(0); node.top = Array(e).fill(0); node.socle = Array(e).fill(0);
+    node.compositionLength = d; node.length = d; node.tauId = null;
+    const incoming = new Set(), outgoing = new Set();
+    node.basisVertices.forEach(v => node.dimension[v]++);
+    node.arrowMaps.forEach(pairs => pairs.forEach(([s, t]) => { outgoing.add(s); incoming.add(t); }));
+    node.basisVertices.forEach((v, i) => { if (!incoming.has(i)) node.top[v]++; if (!outgoing.has(i)) node.socle[v]++; });
+    node._vertices = Array.from({length: e}, () => []); node.basisVertices.forEach((v, i) => node._vertices[v].push(i));
+    node._out = node.arrowMaps.map(pairs => new Map(pairs));
+    node._in = node.arrowMaps.map(pairs => new Map(pairs.map(([s, t]) => [t, s])));
+    node.arrowMaps.forEach((pairs, i) => assert(node._out[i].size === pairs.length && node._in[i].size === pairs.length, '箭头矩阵不是 partial permutation，不能使用此 Hom 求解器。'));
+    return node;
+  }
+  function enumerateStrings(algebra, expected, progress) {
+    const {quiver} = algebra, extensions = Array.from({length: quiver.vertices}, () => []), forbidden = [];
+    for (const a of quiver.arrows) { extensions[a.source].push(a.id + 1); extensions[a.target].push(-(a.id + 1)); }
+    for (const path of algebra.quotientRelations.zeroPaths) { const w = path.map(a => a + 1); forbidden.push(w, reverseWord(w)); }
+    const valid = (word, letter) => {
+      if (word.length && word[word.length - 1] === -letter) return false;
+      const candidate = word.concat(letter);
+      return !forbidden.some(p => p.length <= candidate.length && p.every((x, j) => candidate[candidate.length - p.length + j] === x));
+    };
+    const nodes = new Map(); let frontier = Array.from({length: quiver.vertices}, (_, v) => ({word: [], start: v, end: v})), maxStringLength = 0;
+    while (frontier.length) {
+      const next = [];
+      for (const state of frontier) {
+        const canonical = canonicalWord(state.word, state.start);
+        if (!nodes.has(canonical.id)) {
+          const start = canonical.reversed ? state.end : state.start;
+          nodes.set(canonical.id, nodeFromWord(canonical.word, start, quiver));
+          assert(nodes.size <= expected, '字符串数超过 Brauer tree 分类计数；输入或关系构造不一致。');
+        }
+        for (const letter of extensions[state.end]) if (valid(state.word, letter)) {
+          const a = quiver.arrows[Math.abs(letter) - 1];
+          next.push({word: state.word.concat(letter), start: state.start, end: letter > 0 ? a.target : a.source});
+        }
+      }
+      maxStringLength = Math.max(maxStringLength, frontier[0].word.length);
+      progress('strings', nodes.size, expected); frontier = next;
+      // A word of length r has r+1 pairwise nonisomorphic prefix string modules
+      // (their dimensions differ), so r < the total number of indecomposables.
+      assert(!frontier.length || frontier[0].word.length < expected, '字符串长度超过已证明的有限型上界，拒绝输出不完整列表。');
+    }
+    assert(nodes.size === expected, `非投射字符串应有 ${expected} 个，实际为 ${nodes.size}。`);
+    return {nodes: [...nodes.values()], maxStringLength};
+  }
+  function projectiveNodes(tree, algebra) {
+    const nodes = [], {quiver, powers, special} = algebra;
+    tree.edges.forEach((ends, edge) => {
+      const basisVertices = [edge], arrowMaps = quiver.arrows.map(() => []), final = [];
+      if (special) { basisVertices.push(edge); arrowMaps[0].push([0, 1]); }
+      else {
+        for (const v of ends) {
+          const path = powers.get(edge + '|' + v); if (!path) continue;
+          let previous = 0;
+          path.forEach((a, j) => {
+            if (j === path.length - 1) final.push([a, previous]);
+            else { const next = basisVertices.length; basisVertices.push(quiver.arrows[a].target); arrowMaps[a].push([previous, next]); previous = next; }
+          });
+        }
+        const socle = basisVertices.length; basisVertices.push(edge); final.forEach(([a, previous]) => arrowMaps[a].push([previous, socle]));
+      }
+      nodes.push(enrichNode({id: 'P' + (edge + 1), label: 'P' + (edge + 1), projective: true, injective: true,
+        projectiveVertex: edge, word: null, basisVertices, arrowMaps, kind: 'brauer-tree-projective'}, quiver));
+    });
+    return nodes;
+  }
+  function pathStringOfSubquotient(P, removed, quiver) {
+    const keep = P.basisVertices.map((_, i) => i).filter(i => i !== removed), neighbors = new Map(keep.map(i => [i, []]));
+    P.arrowMaps.forEach((pairs, a) => pairs.forEach(([s, t]) => {
+      if (!neighbors.has(s) || !neighbors.has(t)) return;
+      neighbors.get(s).push([t, a + 1]); neighbors.get(t).push([s, -(a + 1)]);
+    }));
+    assert(keep.length && [...neighbors.values()].every(xs => xs.length <= 2), '投射的 radical/顶商不是字符串图。');
+    let at = keep.find(i => neighbors.get(i).length <= 1), previous = null;
+    assert(at !== undefined, '投射的 radical/顶商出现环。');
+    const sequence = [], word = [];
+    while (true) {
+      sequence.push(at); const extension = neighbors.get(at).find(([j]) => j !== previous);
+      if (!extension) break;
+      word.push(extension[1]); previous = at; at = extension[0];
+    }
+    assert(sequence.length === keep.length, '投射的 radical/顶商不连通。');
+    const canonical = canonicalWord(word, P.basisVertices[sequence[0]]);
+    if (canonical.reversed) sequence.reverse();
+    return {id: canonical.id, sequence};
+  }
+  function sparseMap(source, target, pairs) {
+    const rows = Array.from({length: source.compositionLength}, () => []), entries = new Map();
+    pairs.forEach(([x, y, coefficient = 1]) => { const c = mod(coefficient); if (c) { rows[x].push([y, c]); entries.set(x * target.compositionLength + y, c); } });
+    return {pairs, rows, entries, source, target};
+  }
+  function homSpace(source, target, quiver) {
+    const pairs = [], index = new Map(), width = target.compositionLength;
+    for (let v = 0; v < quiver.vertices; v++) for (const x of source._vertices[v]) for (const y of target._vertices[v]) { index.set(x * width + y, pairs.length); pairs.push([x, y]); }
+    const zero = pairs.length, uf = new UnionFind(zero + 1);
+    for (const a of quiver.arrows) for (const x of source._vertices[a.source]) for (const y of target._vertices[a.target]) {
+      const before = target._in[a.id].get(y), after = source._out[a.id].get(x);
+      const left = before === undefined ? zero : index.get(x * width + before);
+      const right = after === undefined ? zero : index.get(after * width + y);
+      assert(left !== undefined && right !== undefined, 'Hom 交换方程坐标不一致。'); uf.union(left, right);
+    }
+    const groups = new Map(), zeroRoot = uf.find(zero);
+    pairs.forEach((pair, i) => { const key = uf.find(i); if (key === zeroRoot) return; if (!groups.has(key)) groups.set(key, []); groups.get(key).push(pair); });
+    const bases = [...groups.values()].map(group => sparseMap(source, target, group)), pivots = bases.map(b => b.pairs[0]);
+    let identity = -1;
+    if (source === target) {
+      identity = bases.findIndex(b => b.entries.has(0));
+      assert(identity >= 0 && bases[identity].pairs.length === source.compositionLength && bases[identity].pairs.every(([x, y]) => x === y), 'End 的对角分量不是 identity；拒绝未经认证的 radical。');
+      for (let i = 0; i < bases.length; i++) if (i !== identity) {
+        const matrix = Array.from({length: source.compositionLength}, () => Array(source.compositionLength).fill(0));
+        bases[i].pairs.forEach(([x, y, c = 1]) => { matrix[x][y] = c; });
+        assert(rank(matrix, source.compositionLength) < source.compositionLength, 'End 非对角基出现单位，radical 认证失败。');
+      }
+    }
+    return {bases, pivots, identity, radical: bases.map((_, i) => i).filter(i => i !== identity)};
+  }
+  function compositionCoordinates(f, g, targetHom) {
+    const width = g.target.compositionLength;
+    return targetHom.pivots.map(([x, y]) => {
+      let value = 0; for (const [z, c] of f.rows[x]) value += c * (g.entries.get(z * width + y) || 0); return mod(value);
+    });
+  }
+  function irreducibleMaps(nonProjectiveCount, nodes, hom, progress) {
+    // For nonprojective X,Y, Hom_A(X,Y)=Hom_{A/soc A}(X,Y).
+    // Any factorization through a projective P factors through rad(P)/soc(P)
+    // by two radical maps. Thus it already lies in rad^2 of the subcategory
+    // of nonprojectives, and omitting projectives here does not change Irr.
+    const edges = []; let done = 0;
+    for (let x = 0; x < nonProjectiveCount; x++) for (let y = 0; y < nonProjectiveCount; y++) {
+      const h = hom[x][y], ambient = h.bases.length, radicalDimension = h.radical.length;
+      if (!radicalDimension) { done++; continue; }
+      const span = new RowSpace(ambient);
+      loop: for (let z = 0; z < nonProjectiveCount; z++) {
+        const left = hom[x][z], right = hom[z][y];
+        for (const f of left.radical) for (const g of right.radical) {
+          const vector = compositionCoordinates(left.bases[f], right.bases[g], h);
+          if (h.identity >= 0) assert(vector[h.identity] === 0, 'rad² 含有 identity 分量。');
+          span.add(vector); if (span.rank === radicalDimension) break loop;
+        }
+      }
+      const quotientDimension = radicalDimension - span.rank, representatives = [];
+      for (const b of h.radical) { const vector = Array(ambient).fill(0); vector[b] = 1; if (span.add(vector)) representatives.push(h.bases[b]); }
+      assert(representatives.length === quotientDimension, 'rad/rad² 补空间维数不一致。');
+      if (quotientDimension) edges.push({source: nodes[x].id, target: nodes[y].id, multiplicity: quotientDimension, kind: 'irreducible', _representatives: representatives});
+      done++; if (done % nonProjectiveCount === 0) progress('radical-square', done, nonProjectiveCount * nonProjectiveCount);
+    }
+    progress('radical-square', nonProjectiveCount * nonProjectiveCount, nonProjectiveCount * nonProjectiveCount); return edges;
+  }
+  function verifyRelations(nodes, algebra) {
+    function action(node, path) {
+      let image = new Map(node.basisVertices.map((_, i) => [i, i]));
+      for (const a of path) { const next = new Map(); for (const [start, at] of image) { const end = node._out[a].get(at); if (end !== undefined) next.set(start, end); } image = next; }
+      return image;
+    }
+    for (const node of nodes) {
+      for (const path of algebra.relations.zeroPaths) assert(!action(node, path).size, `${node.id} 不满足零关系。`);
+      for (const relation of algebra.relations.commutativity) {
+        const left = action(node, relation.left), right = action(node, relation.right);
+        assert(left.size === right.size && [...left].every(([a, b]) => right.get(a) === b), `${node.id} 不满足循环幂相等关系。`);
+      }
+    }
+  }
+  function translateFromHomProfiles(nodes, edges, homDimensions, projectiveAttachments, e, progress) {
+    // Applying Hom(X,-) to an almost split sequence ending in M gives
+    // H[X,tau M] = sum_Y Irr(Y,M) H[X,Y] - H[X,M] + delta[X,M].
+    // Full Hom columns distinguish modules: the AS relations and
+    // H[:,P]-H[:,rad P]=e_P span all unit vectors, so H is invertible.
+    const count = nodes.length, index = new Map(nodes.map((n, i) => [n.id, i])), columns = new Map();
+    for (let y = 0; y < count; y++) {
+      const key = homDimensions.map(row => row[y]).join(',');
+      assert(!columns.has(key), '完整目录出现重复 Hom profile，无法可靠识别同构类。'); columns.set(key, y);
+    }
+    const incoming = Array.from({length: count}, () => []);
+    edges.forEach(edge => incoming[index.get(edge.target)].push([index.get(edge.source), edge.multiplicity]));
+    for (let y = 0; y < count; y++) {
+      if (nodes[y].projective) continue;
+      const profile = homDimensions.map((row, x) => sum(incoming[y].map(([z, multiplicity]) => multiplicity * row[z])) - row[y] + (x === y ? 1 : 0));
+      const found = columns.get(profile.join(','));
+      assert(found !== undefined && !nodes[found].projective, `τ(${nodes[y].id}) 的精确 Hom profile 没有唯一非投射匹配。`);
+      nodes[y].tauId = nodes[found].id; progress('translation', y + 1, count - e);
+    }
+    for (const attachment of projectiveAttachments) assert(nodes[index.get(attachment.quotientId)].tauId === attachment.radicalId, 'τ(P/soc P) ≠ rad P，投射附着校验失败。');
+    for (const node of nodes) if (!node.projective) {
+      let at = node; for (let j = 0; j < e; j++) at = nodes[index.get(at.tauId)];
+      assert(at.id === node.id, 'Brauer tree 的 τ^e 周期校验失败。');
+    }
+  }
+  function build(input, options = {}) {
+    const progress = typeof options.progress === 'function' ? options.progress : () => {};
+    const tree = normalizedInput(input), algebra = algebraFromTree(tree), e = tree.edges.length, m = tree.multiplicity;
+    const expectedNonProjective = e * e * m, expectedTotal = expectedNonProjective + e;
+    progress('algebra', 1, 1);
+    const enumeration = enumerateStrings(algebra, expectedNonProjective, progress);
+    const nonProjectiveCount = enumeration.nodes.length, projectives = projectiveNodes(tree, algebra), nodes = enumeration.nodes.concat(projectives);
+    assert(nodes.length === expectedTotal, '不可分解模总数不符。'); verifyRelations(nodes, algebra);
+    const byId = new Map(nodes.map(n => [n.id, n])), attachments = [];
+    for (const P of projectives) {
+      const radical = pathStringOfSubquotient(P, 0, algebra.quiver), quotient = pathStringOfSubquotient(P, P.compositionLength - 1, algebra.quiver);
+      assert(byId.has(radical.id) && byId.has(quotient.id), '投射的 radical 或顶商不在完整字符串目录中。');
+      P.radicalId = radical.id; P.socleQuotientId = quotient.id;
+      attachments.push({projectiveId: P.id, radicalId: radical.id, quotientId: quotient.id});
+    }
+    const hom = Array.from({length: nodes.length}, () => []);
+    for (let x = 0; x < nodes.length; x++) {
+      for (let y = 0; y < nodes.length; y++) hom[x][y] = homSpace(nodes[x], nodes[y], algebra.quiver);
+      nodes[x].endDimension = hom[x][x].bases.length; nodes[x].endomorphismRadicalDimension = nodes[x].endDimension - 1;
+      progress('hom', x + 1, nodes.length);
+    }
+    const homMatrix = hom.map(row => row.map(h => h.bases.length));
+    const stableEdges = irreducibleMaps(nonProjectiveCount, nodes, hom, progress);
+    assert(sum(stableEdges.map(edge => edge.multiplicity)) === 2 * e * (e * m - 1), '稳定 AR 箭头计数失败。');
+    const edges = stableEdges.concat(attachments.flatMap(a => [
+      {source: a.radicalId, target: a.projectiveId, multiplicity: 1, kind: 'projective-inclusion'},
+      {source: a.projectiveId, target: a.quotientId, multiplicity: 1, kind: 'projective-quotient'}
+    ]));
+    assert(sum(edges.map(edge => edge.multiplicity)) === 2 * e * e * m, '完整 AR 箭头计数失败。');
+    assert(edges.every(edge => edge.multiplicity === 1), 'Brauer tree 中出现意外的不可约重数。');
+    translateFromHomProfiles(nodes, edges, homMatrix, attachments, e, progress);
+    const algebraDimension = sum(projectives.map(P => P.compositionLength));
+    const expectedDimension = sum(tree.vertices.map(v => tree.multiplicities[v] * tree.orders[v].length ** 2));
+    assert(algebraDimension === expectedDimension, '代数维数与加权顶点度数公式不一致。');
+    const cleanNodes = nodes.map(node => Object.fromEntries(Object.entries(node).filter(([key]) => !key.startsWith('_'))));
+    const cleanEdges = edges.map(edge => Object.fromEntries(Object.entries(edge).filter(([key]) => !key.startsWith('_'))));
+    progress('complete', 1, 1);
+    return {schema: 'brauer-tree-atlas-1', family: 'brauer-tree', field: 'GF(5)', characteristic: PRIME,
+      treeInput: tree, quiver: algebra.quiver, relations: algebra.relations, socleQuotientRelations: algebra.quotientRelations,
+      nodes: cleanNodes, edges: cleanEdges, homMatrix, projectiveAttachments: attachments,
+      e, multiplicity: m, algebraDimension, fullCount: expectedTotal, stableCount: expectedNonProjective,
+      fullArrowCount: sum(edges.map(edge => edge.multiplicity)), stableArrowCount: sum(stableEdges.map(edge => edge.multiplicity)),
+      maxStringLength: enumeration.maxStringLength, complete: true, stable: false,
+      completeness: 'All strings of A/soc(A), modulo inversion, plus all indecomposable projectives; frontier exhausted and e(em+1) count verified.',
+      validation: {relations: true, endRadicalsCertified: true, exactRadicalSquare: true, tauByUniqueHomProfiles: true, projectiveAttachments: true, tauPeriod: true},
+      conventions: {moduleSide: 'right', pathMultiplication: 'left-to-right', vertexIndex: '0-based edge IDs', wordLetters: 'signed (arrowID+1)', arrowMaps: 'For each arrow, pairs of global source/target basis indices, coefficient 1.', fieldScope: 'Exact arithmetic over GF(5); no claim of tests in every characteristic.'}};
+  }
+  root.BrauerTreeAtlas = Object.freeze({build, version: '1.0.0', limits: {edges: 10, multiplicity: 8, maxModules: 150, field: PRIME}});
+  if (typeof module !== 'undefined' && module.exports) module.exports = root.BrauerTreeAtlas;
+})(globalThis);
+
+</script>
+<script id="brauer-tree-layout">
+/* Recover cylinder coordinates from the computed stable AR graph and translation.
+ * Coordinates affect drawing only, never module identity or AR arrows. */
+(function(root){
+  'use strict';
+  function assign(report){
+    const {e,multiplicity:m}=report,H=e*m,non=report.nodes.filter(n=>!n.projective),byId=new Map(report.nodes.map(n=>[n.id,n]));
+    const ids=new Set(non.map(n=>n.id)),incoming=new Map(non.map(n=>[n.id,[]])),outgoing=new Map(non.map(n=>[n.id,[]]));
+    const stable=report.edges.filter(a=>ids.has(a.source)&&ids.has(a.target));
+    for(const a of stable){incoming.get(a.target).push(a.source);outgoing.get(a.source).push(a.target);}
+    const bottom=non.find(n=>incoming.get(n.id).length===(H===1?0:1)&&outgoing.get(n.id).length===(H===1?0:1));
+    if(!bottom)throw Error('稳定 AR 图没有标准圆柱边界，拒绝错误布局。');
+    const placed=new Set();let first=bottom;
+    for(let row=1;row<=H;row++){
+      let n=first;
+      for(let col=0;col<e;col++){
+        if(!n||placed.has(n.id))throw Error('τ 轨道长度与树的边数不一致。');
+        n.column=col;n.row=row;placed.add(n.id);n=byId.get(n.tauId);
+      }
+      if(n.id!==first.id)throw Error('τ 轨道未闭合。');
+      if(row<H){const next=incoming.get(first.id).filter(id=>!placed.has(id));if(next.length!==1)throw Error('无法唯一识别圆柱的下一层。');first=byId.get(next[0]);}
+    }
+    if(placed.size!==non.length)throw Error('圆柱布局未覆盖全部非投射模。');
+    // Verify the entire recovered graph, rather than relying on a visually plausible layout.
+    const expected=new Set();
+    for(const n of non){if(n.row>1)expected.add(`${n.column},${n.row}>${n.column},${n.row-1}`);if(n.row<H)expected.add(`${n.column},${n.row}>${(n.column-1+e)%e},${n.row+1}`);}
+    const actual=new Set(stable.map(a=>{const s=byId.get(a.source),t=byId.get(a.target);return`${s.column},${s.row}>${t.column},${t.row}`;}));
+    if(actual.size!==expected.size||[...expected].some(x=>!actual.has(x)))throw Error('真实 AR 箭头与恢复的圆柱坐标不一致。');
+    for(const n of report.nodes.filter(n=>n.projective)){
+      const attachment=report.projectiveAttachments.find(a=>a.projectiveId===n.id),q=byId.get(attachment.quotientId),r=byId.get(attachment.radicalId);
+      if(q.row!==r.row||r.column!==(q.column+1)%e)throw Error('投射附着不满足 τ(P/soc P)=rad P 的坐标。');
+      n.column=q.column+.5;n.row=q.row+.43;
+    }
+    report.cylinderHeight=H;report.n=e;
+    return report;
+  }
+  root.BrauerTreeLayout=Object.freeze({assign});
+  if(typeof module!=='undefined'&&module.exports)module.exports=root.BrauerTreeLayout;
+})(globalThis);
+
+</script>
+<script id="tree-editor-ui">
+/* Local tree editor. Edge numbers are displayed from 1; engine indices start at 0. */
+(() => {
+  'use strict';
+  const $=id=>document.getElementById(id),esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  let edges=[['A','B'],['B','C'],['C','D']],orders={},exceptional='B',multiplicity=2,selected='B',dirty=false,apply=()=>{};
+  const vertices=()=>[...new Set(edges.flat())];
+  const incident=v=>edges.map((e,i)=>e.includes(v)?i:-1).filter(i=>i>=0);
+  function error(text){$('tree-error').textContent=text;$('tree-error').hidden=!text;}
+  function markDirty(){dirty=true;$('tree-dirty').textContent='编辑尚未应用';}
+  function normalizeOrders(){const out=Object.create(null);for(const v of vertices()){const inc=incident(v),old=orders[v]||[];out[v]=old.filter(i=>inc.includes(i));for(const i of inc)if(!out[v].includes(i))out[v].push(i);}orders=out;}
+  function readEdges(){return [...$('tree-edge-table').querySelectorAll('tr')].map(tr=>[tr.querySelector('[data-end="0"]').value.trim(),tr.querySelector('[data-end="1"]').value.trim()]);}
+  function validateTree(candidate){
+    if(!Array.isArray(candidate)||candidate.length<1||candidate.length>10||candidate.some(e=>!Array.isArray(e)||e.length!==2||e.some(v=>typeof v!=='string'&&typeof v!=='number')))throw Error('树需要 1–10 条边；每条边须恰有两个有效端点。');
+    const vs=[...new Set(candidate.flat())];
+    for(const v of vs)if(!/^[\p{L}\p{N}_-]{1,16}$/u.test(v)||['__proto__','constructor','prototype'].includes(v))throw Error('顶点名请使用 1–16 个字母、数字、中文、下划线或短横线。');
+    const neighbors=new Map(vs.map(v=>[v,[]])),pairs=new Set();
+    for(const[a,b]of candidate){if(a===b)throw Error('Brauer 树不能有自环。');const k=[a,b].sort().join('|');if(pairs.has(k))throw Error('两顶点之间不能有重复边。');pairs.add(k);neighbors.get(a).push(b);neighbors.get(b).push(a);}
+    const seen=new Set([vs[0]]),todo=[vs[0]];for(let j=0;j<todo.length;j++)for(const v of neighbors.get(todo[j]))if(!seen.has(v)){seen.add(v);todo.push(v);}
+    if(seen.size!==vs.length)throw Error('输入不连通：所有边必须组成一棵树。');
+    if(vs.length!==candidate.length+1)throw Error('输入含有圈；一般 Brauer graph 不属于本次有限型树引擎。');
+    return vs;
+  }
+  function updateEdges(){try{const next=readEdges();validateTree(next);edges=next;normalizeOrders();if(!vertices().includes(exceptional))exceptional=vertices()[0];if(!vertices().includes(selected))selected=vertices()[0];render();markDirty();error('');return true;}catch(e){error(e.message);return false;}}
+  function readInput(){
+    const next=readEdges(),vs=validateTree(next);
+    const fields=[...$('tree-orders').querySelectorAll('input')];
+    if(fields.length!==vs.length||fields.some(el=>!vs.includes(el.dataset.vertex)))throw Error('边的端点已改变。请先点“更新顶点与循环序”，再检查新循环序。');
+    edges=next;
+    for(const el of $('tree-orders').querySelectorAll('input')){
+      const v=el.dataset.vertex,order=el.value.trim().split(/[\s,，]+/).filter(Boolean).map(x=>Number(x)-1),inc=incident(v);
+      if(order.length!==inc.length||new Set(order).size!==inc.length||order.some(i=>!Number.isInteger(i)||!inc.includes(i)))throw Error(`顶点 ${v} 的循环序必须恰好包含关联边 ${inc.map(i=>i+1).join(', ')}，各一次。`);
+      orders[v]=order;
+    }
+    exceptional=$('tree-exceptional').value;multiplicity=Number($('tree-multiplicity').value);
+    if(!Number.isInteger(multiplicity)||multiplicity<1||multiplicity>8)throw Error('异常重数须为 1–8 的整数；其余顶点重数固定为 1。');
+    const expected=edges.length*(edges.length*multiplicity+1);
+    if(expected>150)throw Error(`此输入有 ${expected} 个不可分解同构类，超过浏览器精确计算的 150 个资源上限。请减少边数或重数；程序不会用截断冒充完整结果。`);
+    return {edges:edges.map(e=>e.slice()),orders:Object.fromEntries(Object.entries(orders).map(([v,o])=>[v,o.slice()])),exceptionalVertex:exceptional,multiplicity,field:5};
+  }
+  function draw(){
+    const vs=vertices(),N=vs.length,neighbors=new Map(vs.map(v=>[v,[]]));edges.forEach(([a,b],i)=>{neighbors.get(a).push([b,i]);neighbors.get(b).push([a,i]);});
+    const root=vs.reduce((best,v)=>incident(v).length>incident(best).length?v:best,vs[0]),parent=new Map([[root,null]]),sub=new Map(),coords=new Map();
+    function weight(v){let w=0;for(const[u]of neighbors.get(v))if(u!==parent.get(v)){parent.set(u,v);w+=weight(u);}sub.set(v,w||1);return w||1;}
+    weight(root);
+    const W=430,H=270,maxDepth={v:0};
+    function place(v,depth,start,end){maxDepth.v=Math.max(maxDepth.v,depth);coords.set(v,[depth,(start+end)/2]);let at=start,seq=(orders[v]||incident(v)).slice();
+      if(parent.get(v)!=null){const pe=neighbors.get(v).find(([u])=>u===parent.get(v))[1],p=seq.indexOf(pe);seq=seq.slice(p+1).concat(seq.slice(0,p+1));}
+      const ordered=seq.map(i=>neighbors.get(v).find(x=>x[1]===i)).filter(Boolean);
+      for(const[u]of ordered)if(u!==parent.get(v)){const next=at+(end-start)*sub.get(u)/sub.get(v);place(u,depth+1,at,next);at=next;}}
+    place(root,0,0,1);coords.forEach((p,v)=>coords.set(v,[maxDepth.v?42+p[0]*(W-84)/maxDepth.v:W/2,32+p[1]*(H-64)]));
+    let html=`<svg viewBox="0 0 ${W} ${H}" role="group" aria-label="自定义 Brauer 树">`;
+    edges.forEach(([a,b],i)=>{const[x,y]=coords.get(a),[u,v]=coords.get(b);html+=`<line x1="${x}" y1="${y}" x2="${u}" y2="${v}" stroke="#8da5b5" stroke-width="2"/><rect x="${(x+u)/2-12}" y="${(y+v)/2-10}" width="24" height="20" rx="5" fill="#fff"/><text x="${(x+u)/2}" y="${(y+v)/2+4}" text-anchor="middle" font-size="12" fill="#607485">${i+1}</text>`;});
+    for(const v of vs){const[x,y]=coords.get(v),ex=v===exceptional&&multiplicity>1;html+=`<g role="button" tabindex="0" data-tree-vertex="${esc(v)}" aria-label="选择树顶点 ${esc(v)}"><circle cx="${x}" cy="${y}" r="${ex?19:15}" fill="${ex?'#fff0dd':v===selected?'#dcf2ec':'white'}" stroke="${ex?'#bc7736':'#4b8d8a'}" stroke-width="${v===selected?3:1.5}"/><text x="${x}" y="${y+4}" text-anchor="middle" font-size="11" fill="#183044">${esc(v)}</text>${ex?`<text x="${x}" y="${y-25}" text-anchor="middle" font-size="11" fill="#a76226">m=${multiplicity}</text>`:''}</g>`;}
+    $('tree-canvas').innerHTML=html+'</svg>';
+    $('tree-canvas').querySelectorAll('[data-tree-vertex]').forEach(g=>{const fn=()=>{selected=g.dataset.treeVertex;$('tree-leaf-parent').value=selected;draw();};g.addEventListener('click',fn);g.addEventListener('keydown',e=>{if(e.key==='Enter')fn();});});
+    $('tree-summary').textContent=`${edges.length} 条边 / ${vs.length} 个树顶点；代数有 ${edges.length} 个简单模。图上的边号就是简单模编号。`;
+  }
+  function render(){
+    normalizeOrders();const vs=vertices();
+    $('tree-edge-table').innerHTML=edges.map(([a,b],i)=>`<tr><td>${i+1}</td><td><input data-end="0" aria-label="边 ${i+1} 起点" value="${esc(a)}" maxlength="16"></td><td>—</td><td><input data-end="1" aria-label="边 ${i+1} 终点" value="${esc(b)}" maxlength="16"></td></tr>`).join('');
+    $('tree-orders').innerHTML=vs.map(v=>`<label class="tree-order-row"><span>${esc(v)}</span><input data-vertex="${esc(v)}" aria-label="顶点 ${esc(v)} 的循环序" value="${orders[v].map(i=>i+1).join(', ')}"></label>`).join('');
+    const options=vs.map(v=>`<option value="${esc(v)}">${esc(v)} · 度 ${incident(v).length}</option>`).join('');
+    $('tree-exceptional').innerHTML=options;$('tree-exceptional').value=exceptional;
+    $('tree-leaf-parent').innerHTML=options;$('tree-leaf-parent').value=selected;
+    $('tree-multiplicity').value=multiplicity;$('tree-multiplicity-value').textContent=multiplicity;
+    $('tree-edge-table').querySelectorAll('input').forEach(x=>x.addEventListener('input',markDirty));
+    $('tree-orders').querySelectorAll('input').forEach(x=>x.addEventListener('input',()=>{const arr=x.value.split(/[\s,，]+/).filter(Boolean).map(n=>Number(n)-1);if(arr.length===incident(x.dataset.vertex).length&&new Set(arr).size===arr.length&&arr.every(i=>incident(x.dataset.vertex).includes(i))){orders[x.dataset.vertex]=arr;draw();}markDirty();}));
+    draw();
+  }
+  function preset(name){
+    if(name==='star'){edges=[['A','B'],['A','C'],['A','D']];exceptional='A';multiplicity=2;}
+    else if(name==='fork'){edges=[['A','B'],['B','C'],['B','D'],['D','E']];exceptional='B';multiplicity=1;}
+    else if(name==='double'){edges=[['A','B'],['A','C'],['A','D'],['D','E'],['D','F']];exceptional='D';multiplicity=1;}
+    else{edges=[['A','B'],['B','C'],['C','D']];exceptional='B';multiplicity=2;}
+    orders=Object.create(null);selected=exceptional;render();markDirty();error('');
+  }
+  function init(onApply){
+    apply=onApply;render();
+    $('tree-update').addEventListener('click',updateEdges);
+    $('tree-apply').addEventListener('click',()=>{try{const input=readInput();error('');dirty=false;$('tree-dirty').textContent='正在计算…';apply(input);}catch(e){error(e.message);}});
+    $('tree-exceptional').addEventListener('change',()=>{exceptional=$('tree-exceptional').value;draw();markDirty();});
+    $('tree-leaf-parent').addEventListener('change',()=>{selected=$('tree-leaf-parent').value;draw();});
+    $('tree-multiplicity').addEventListener('input',()=>{multiplicity=Number($('tree-multiplicity').value);$('tree-multiplicity-value').textContent=multiplicity;draw();markDirty();});
+    $('tree-leaf-add').addEventListener('click',()=>{if(!updateEdges())return;if(edges.length>=10){error('交互编辑器最多 10 条边。');return;}const vs=vertices();let i=0;while(vs.includes('V'+i))i++;edges.push([$('tree-leaf-parent').value,'V'+i]);render();markDirty();});
+    $('tree-leaf-remove').addEventListener('click',()=>{if(!updateEdges())return;const v=$('tree-leaf-parent').value,inc=incident(v);if(edges.length===1||inc.length!==1){error('请选择度为 1 的叶子；至少保留一条边。');return;}edges.splice(inc[0],1);orders=Object.create(null);if(exceptional===v)exceptional=vertices()[0];selected=vertices()[0];render();markDirty();});
+    $('tree-preset').addEventListener('change',()=>preset($('tree-preset').value));
+    $('tree-reset-order').addEventListener('click',()=>{orders=Object.create(null);render();markDirty();});
+    $('tree-export').addEventListener('click',()=>{try{const input=readInput(),u=URL.createObjectURL(new Blob([JSON.stringify(input,null,2)],{type:'application/json'})),a=document.createElement('a');a.href=u;a.download='brauer-tree-input.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),30000);}catch(e){error(e.message);}});
+    $('tree-import').addEventListener('change',async()=>{try{
+      const file=$('tree-import').files[0];if(!file)return;if(file.size>32768)throw Error('配置文件超过 32 KiB。');const obj=JSON.parse(await file.text());validateTree(obj.edges);
+      const next=obj.edges.map(e=>e.map(String)),vs=validateTree(next),m=obj.multiplicity===undefined?1:obj.multiplicity;
+      if(!Number.isInteger(m)||m<1||m>8)throw Error('重数必须是 1–8 的整数。');
+      if(obj.field!==undefined&&obj.field!==5)throw Error('此引擎使用 GF(5)，不能把其他域的配置静默改写。');
+      if(next.length*(next.length*m+1)>150)throw Error('配置超过 150 个不可分解模的浏览器资源上限。');
+      const ex=obj.exceptionalVertex==null?vs[0]:String(obj.exceptionalVertex);if(!vs.includes(ex))throw Error('异常顶点不在树上。');
+      if(obj.orders!==undefined&&(!obj.orders||typeof obj.orders!=='object'||Array.isArray(obj.orders)))throw Error('循环序须为顶点到边号数组的映射。');
+      const orderData=Object.create(null);if(obj.orders&&Object.keys(obj.orders).some(v=>!vs.includes(v)))throw Error('循环序含不在树中的顶点。');
+      for(const v of vs){const inc=next.map((e,i)=>e.includes(v)?i:-1).filter(i=>i>=0),o=obj.orders?.[v]===undefined?inc:obj.orders[v];
+        if(!Array.isArray(o)||o.length!==inc.length||new Set(o).size!==inc.length||o.some(i=>!Number.isInteger(i)||!inc.includes(i)))throw Error('顶点 '+v+' 的循环序无效；配置文件用从 0 开始的边号。');orderData[v]=o.slice();}
+      edges=next;orders=orderData;exceptional=ex;multiplicity=m;selected=exceptional;render();markDirty();error('');
+    }catch(e){error('导入失败：'+e.message);}finally{$('tree-import').value='';}});
+  }
+  window.BrauerTreeEditor={init,getInput:readInput,getSnapshot:()=>({edges:edges.map(e=>e.slice()),orders:Object.fromEntries(Object.entries(orders).map(([v,o])=>[v,o.slice()])),exceptionalVertex:exceptional,multiplicity,field:5}),setStatus:text=>{$('tree-dirty').textContent=text;},setError:error};
+})();
+
+</script>
+<script id="atlas-ui">
+/* Browser interface; the two pure mathematical engines above are also testable in Node. */
+(() => {
+  'use strict';
+  const $ = id => document.getElementById(id), val = id => $(id).value,
+    num = id => Number(val(id)), esc = s => String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const colors = {normal:'#087f83', projective:'#bb6534', injective:'#4774ba', both:'#8661b4'};
+  let current, scene, selectedId, view = 'overview', pos = new Map(), noticeTimer;
+  let treeInput,treeReport,treeWorker=null,treeJob=0;
+  const treeCache=new Map();
+  const chosen = () => current?.nodes.find(n => n.id === selectedId);
+  const dims = n => n.dimension ? '(' + n.dimension.join(',') + ')' : '准单模根之和';
+  const label = n => n?.label || n?.id || '0';
+  const nodeColor = n => n.projective && n.injective ? colors.both : n.projective ? colors.projective : n.injective ? colors.injective : colors.normal;
+  const show = (id, on) => $(id).classList.toggle('hidden', !on);
+  function toast(s) { $('status').textContent=s; $('status').hidden=false; clearTimeout(noticeTimer);noticeTimer=setTimeout(()=>$('status').hidden=true,2600); }
+  function setPanel(name) {
+    document.querySelectorAll('.panel').forEach(x=>x.classList.toggle('active',x.id===name));
+    document.querySelectorAll('nav button').forEach(x=>x.classList.toggle('active',x.dataset.panel===name));
+  }
+  document.querySelectorAll('[data-panel]').forEach(b=>b.addEventListener('click',()=>setPanel(b.dataset.panel)));
+  document.querySelectorAll('[data-jump]').forEach(b=>b.addEventListener('click',e=>{e.preventDefault();setPanel(b.dataset.jump);}));
+  document.querySelectorAll('a[href^="#ref-"]').forEach(a=>a.addEventListener('click',()=>{setPanel('methods');}));
+  function config() {
+    const f=val('family'), d=val('dynkin-type'), a=val('affine-type');
+    show('dynkin-field',f==='dynkin');show('affine-field',f==='affine');
+    show('tree-editor',f==='tree');
+    show('m-field',f==='brauer');show('L-field',f==='cyclic');show('stable-field',f==='brauer'||f==='cyclic'||f==='tree');
+    show('depth-field',f==='affine');show('p-field',f==='affine'&&a==='A');
+    show('orientation-field',f==='dynkin'||f==='affine');
+    show('n-field',f==='brauer'||f==='cyclic'||f==='dynkin'&&(d==='A'||d==='D')||f==='affine'&&a==='D');
+    show('component-tabs',f==='affine');show('tube-field',f==='affine');
+    show('lambda-field',f==='affine'&&val('tube-choice')==='homogeneous');
+    const isD=f==='dynkin'&&d==='D'||f==='affine'&&a==='D';
+    $('size').min=isD?'4':'1';$('size').max=f==='brauer'?'7':isD?'10':'12';
+    $('size').value=Math.max(Number($('size').min),Math.min(Number($('size').max),num('size')));
+    $('n-field').querySelector('label').textContent=f==='brauer'?'树的边数 n':f==='affine'?'D̃ₙ 的指标 n（顶点 n+1 个）':'顶点数 n';
+    const alt=$('orientation').querySelector('option[value="alternating"]');
+    alt.disabled=f==='affine';if(alt.disabled&&val('orientation')==='alternating')$('orientation').value='forward';
+    for(const id of ['size','multiplicity','loewy','p','q','depth'])$(id+'-value').textContent=val(id);
+    document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===view));
+  }
+  function adapt(data, type, component) {
+    data.nodes.forEach(n=>{
+      n.kind='hereditary';n.component=component;
+      if(type==='A'&&val('family')==='dynkin') {
+        const support=n.dimension.map((x,i)=>x?i+1:0).filter(Boolean);
+        n.label=`[${support[0]},${support[support.length-1]}]`;
+      } else if(type==='K') {
+        const r=Math.min(...n.dimension);n.label=(component==='preinjective'?'I':'P')+r;
+      } else n.label=n.layer===0?(component==='preinjective'?'I':'P')+(n.vertex+1):
+        (component==='preinjective'?`τ^${n.layer} I${n.vertex+1}`:`τ^−${n.layer} P${n.vertex+1}`);
+    });return data;
+  }
+  function stopTreeWorker(){if(treeWorker){treeWorker.terminate();treeWorker=null;}show('tree-cancel',false);document.querySelector('.center').classList.remove('tree-busy');document.querySelector('.right').classList.remove('tree-busy');}
+  function prepareTree(report){
+    BrauerTreeLayout.assign(report);let ordinal=0;
+    for(const n of report.nodes){n.wordLabel=n.label;if(!n.projective&&n.word.length)n.label='X'+(++ordinal);n.kind='brauer-tree';}
+    report.family='tree';return report;
+  }
+  function computeTree(input){
+    stopTreeWorker();const job=++treeJob,key=JSON.stringify(input);show('tree-cancel',true);$('tree-progress').hidden=false;
+    document.querySelector('.center').classList.add('tree-busy');document.querySelector('.right').classList.add('tree-busy');
+    $('tree-progress').textContent='构造代数并穷尽合法字符串…';BrauerTreeEditor.setError('');BrauerTreeEditor.setStatus('正在精确计算…');
+    $('algebra-title').textContent='Brauer 树 · 正在计算';$('algebra-formula').textContent='k=GF(5) · 完整目录与不可约态射';$('scope-badge').textContent='计算中';
+    $('stats').innerHTML='';$('graph').innerHTML='';$('graph-note').textContent='计算完成后才显示结果；不会用部分枚举代替完整 AR 图。';
+    current=null;scene=null;$('module-table').innerHTML='';$('inspector').innerHTML='<p class="small">正在生成完整模目录…</p>';$('distribution-description').innerHTML='';$('distribution-chart').innerHTML='';$('structure-description').innerHTML='';
+    const phases={algebra:'已构造 quiver 与关系',strings:'枚举全部非投射字符串',hom:'求所有 Hom 与 End radical','radical-square':'计算 rad/rad² 与不可约态射',translation:'通过完整 Hom profile 识别 τ',complete:'完成'};
+    const finish=report=>{if(job!==treeJob)return;stopTreeWorker();try{treeReport=prepareTree(report);treeCache.set(key,treeReport);$('tree-progress').hidden=true;BrauerTreeEditor.setStatus('完整计算已应用');if(val('family')==='tree')regenerate();}catch(e){fail(e.message);}};
+    const fail=message=>{if(job!==treeJob)return;stopTreeWorker();$('tree-progress').hidden=true;BrauerTreeEditor.setStatus('计算失败');BrauerTreeEditor.setError(message);$('graph-note').textContent='未生成结果：'+message;};
+    const progress=(phase,done,total)=>{if(job!==treeJob)return;$('tree-progress').textContent=(phases[phase]||phase)+(total>1?` · ${Math.min(done,total)} / ${total}`:'');};
+    try{
+      const body=$('brauer-tree-model').textContent+'\nself.onmessage=e=>{try{const report=BrauerTreeAtlas.build(e.data,{progress:(phase,done,total)=>postMessage({type:"progress",phase,done,total})});postMessage({type:"result",report});}catch(error){postMessage({type:"error",message:error.message});}};';
+      const url=URL.createObjectURL(new Blob([body],{type:'text/javascript'}));treeWorker=new Worker(url);
+      treeWorker.onmessage=e=>{if(e.data.type==='progress')progress(e.data.phase,e.data.done,e.data.total);else if(e.data.type==='result'){URL.revokeObjectURL(url);finish(e.data.report);}else{URL.revokeObjectURL(url);fail(e.data.message);}};
+      treeWorker.onerror=e=>{URL.revokeObjectURL(url);fail('本地计算线程未能完成：'+e.message);};treeWorker.postMessage(input);
+    }catch(e){show('tree-cancel',false);setTimeout(()=>{try{finish(BrauerTreeAtlas.build(input,{progress}));}catch(error){fail(error.message);}},0);}
+  }
+  function regenerate() {
+    config();
+    const f=val('family'),n=num('size'),m=num('multiplicity'),L=num('loewy');
+    if(f!=='tree'&&treeWorker){treeJob++;stopTreeWorker();$('tree-progress').hidden=true;}
+    let title,formula,badge,note,stats;
+    if(f==='tree') {
+      const key=JSON.stringify(treeInput);treeReport=treeCache.get(key);
+      if(!treeReport){computeTree(treeInput);return;}
+      const stable=$('stable').checked,keep=new Set(treeReport.nodes.filter(n=>!stable||!n.projective).map(n=>n.id));
+      current={...treeReport,stable,nodes:treeReport.nodes.filter(n=>keep.has(n.id)),edges:treeReport.edges.filter(a=>keep.has(a.source)&&keep.has(a.target))};
+      scene={family:'tree',n:treeReport.e,m:treeReport.multiplicity,finite:true,fullReport:treeReport};
+      title=`Brauer 树 · ${treeReport.e} 边 · m=${treeReport.multiplicity}`;
+      formula=`A = GF(5)Q / I · dim A = ${treeReport.algebraDimension} · 异常顶点 ${treeReport.treeInput.exceptionalVertex}`;
+      badge=stable?'完整稳定图':'完整 AR 图';stats=[[current.nodes.length,stable?'全部非投射模':'全部不可分解模'],[arrowCount(current),'当前图的箭头'],[treeReport.algebraDimension,'代数维数']];
+      note=`由实际 Hom、rad/rad² 与投射附着生成。${treeReport.e>1?'虚线列重复第 1 列，不增加模。':''}${stable?'已删去投射模。':'紫色 Pᵢ 按真实 rad Pᵢ → Pᵢ → Pᵢ/soc Pᵢ 插入；位置随树与循环序变化。'}`;
+    } else if(f==='dynkin') {
+      const t=val('dynkin-type');current=adapt(HereditaryAtlas.dynkin(t[0],t.startsWith('E')?Number(t.slice(1)):n,val('orientation')),t,'finite');
+      scene={family:f,type:t,n:current.quiver.vertices,finite:true};
+      title=`Dynkin ${t==='A'||t==='D'?t+n:t}`;formula='A = kQ · 无关系 · Gabriel 正根分类';badge='完整 AR 图';
+      stats=[[current.nodes.length,'全部不可分解模'],[arrowCount(current),'不可约箭头'],[current.quiver.vertices,'简单模 / P / I']];
+      note='完整模范畴 AR 图。点选顶点可查看维数向量；投射模 τ=0。';
+    } else if(f==='cyclic'||f==='brauer') {
+      const loewy=f==='brauer'?n*m+1:L;
+      current=QuiverAtlas.cyclic(n,loewy,$('stable').checked);scene={family:f,n,L:loewy,m,finite:true};
+      title=f==='brauer'?`${n} 边 Brauer 星 · m=${m}`:`循环 Nakayama · n=${n}, L=${loewy}`;
+      formula=`A = kC${n} / J^${loewy} · dim A = ${n*loewy}`;badge=$('stable').checked?'完整稳定图':'完整 AR 图';
+      stats=[[current.nodes.length,$('stable').checked?'稳定图顶点':'全部不可分解模'],[arrowCount(current),'当前图的箭头'],[n*loewy,'完整模总数']];
+      note=`${n>1?'最右虚线列重复第 1 列，用来展开圆柱；重复顶点不计数。':'n=1 时两种不可约态射方向相反。'} ${$('stable').checked?'已删去所有长度 L 的投射模及相邻箭头。':'包含长度 L 的投射且内射模。'}`;
+    } else {
+      const t=val('affine-type'),type=t==='K'?'A':t[0],p=t==='K'?1:num('p'),q=t==='K'?1:num('q'),depth=num('depth');
+      const inherited=HereditaryAtlas.affine(type,type==='A'?null:t.startsWith('E')?Number(t.slice(1)):n,p,q,depth,val('orientation'));
+      const pp=adapt(inherited.components.preprojective,t,'preprojective');
+      // Use the same quiver for both components, with the dual Coxeter recurrence.
+      const pi=adapt(HereditaryAtlas.build(pp.quiver,{finite:false,depth,component:'preinjective'}),t,'preinjective');
+      const ranks=QuiverAtlas.tubeRanks(t==='K'?'A':t,n,p,q),old=val('tube-choice');
+      $('tube-choice').innerHTML='<option value="homogeneous">同质管 · 秩 1 · 一参数族</option>'+ranks.map((r,i)=>`<option value="${i}">例外管 ${i+1} · 秩 ${r}</option>`).join('');
+      if(old==='homogeneous'||Number(old)<ranks.length)$('tube-choice').value=old;
+      if(!$('tube-choice').value)$('tube-choice').value='homogeneous';
+      const rank=val('tube-choice')==='homogeneous'?1:ranks[Number(val('tube-choice'))],delta=pp.delta;
+      const oldParameter=val('parameter'),isK=t==='K'||type==='A'&&p===1&&q===1;
+      $('parameter').innerHTML=isK?'<option value="λ">一般 λ</option><option value="0">0</option><option value="1">1</option><option value="∞">∞</option>':'<option value="λ">λ ∉ D</option><option value="μ">μ ∉ D（另一参数）</option><option value="ν">ν ∉ D（另一参数）</option>';
+      if(Array.from($('parameter').options).some(x=>x.value===oldParameter))$('parameter').value=oldParameter;
+      const parameter=val('tube-choice')==='homogeneous'?val('parameter'):'λ'+(Number(val('tube-choice'))+1);
+      const regular=QuiverAtlas.tube(rank,depth,delta,parameter);
+      scene={family:f,type:t,n:pp.quiver.vertices,finite:false,ranks,delta,rank,depth,pp,pi,regular,parameter,quiver:pp.quiver,p,q};
+      current=view==='preinjective'?pi:view==='regular'?regular:pp;
+      title=t==='K'?'Kronecker 代数':type==='A'?`Euclidean Ã(${p},${q})`:`Euclidean ${type==='D'?'D̃'+n:'Ẽ'+t.slice(1)}`;
+      formula=`A = kQ · δ = (${delta.join(',')}) · k 代数闭`;
+      badge=view==='overview'?'完整分支结构':'无限图 · 有限窗口';
+      stats=[['∞','不可分解模'],[ranks.length,'秩 > 1 的例外管'],['ℙ¹(k)','正则管索引']];
+      note=view==='overview'?'三类区域属于不同 AR 分支；区域之间没有不可约态射。每一根管及两侧分支均无限延伸。':view==='regular'?`只画一个秩 ${rank} 管的准长度 1…${depth}。上方无限延伸。${rank>1?'虚线列重复第 1 列。':'实线只连接相邻准长度；τ 固定点可单独显示为虚线环。'}参数变化不是管间的 AR 箭头。`:`只画 ${depth} 层 τ${view==='preprojective'?'⁻¹':''} 轨道窗口；图外继续延伸。窗口边界不等于投射/内射边界。`;
+    }
+    $('algebra-title').textContent=title;$('algebra-formula').textContent=formula;
+    $('scope-badge').textContent=badge;$('scope-badge').classList.toggle('tame',f==='affine');
+    $('stats').innerHTML=stats.map(s=>`<div class="stat"><strong>${esc(s[0])}</strong><span>${s[1]}</span></div>`).join('');
+    $('graph-note').textContent=note;
+    $('conventions').textContent=f==='tree'?'GF(5) · 右模 · 树边 = 简单模 · X 标签详见模面板':f==='affine'||f==='dynkin'?'k 代数闭 · 右模 · 维数坐标按上图编号':'分裂代数 · 右模 · M(i,ℓ) 由顶和长度标记';
+    $('footer-convention').textContent=f==='tree'?'mod-A · GF(5) · 精确 Hom/rad² · 完整枚举范围随图导出':'mod-A · 右模 · k 代数闭 · 公式生成与范围说明随图导出';
+    if(!current.nodes.some(x=>x.id===selectedId))selectedId=current.nodes[0]?.id;
+    config();miniQuiver(scene.quiver||current.quiver);draw();describe();renderTable();inspect();
+  }
+  function arrowCount(d){return d.edges.reduce((s,e)=>s+(e.multiplicity||1),0);}
+  function miniQuiver(q) {
+    const n=q.vertices,W=Math.max(185,n*27),H=n<=3?88:112,coords=[];
+    if(scene.family==='cyclic'||scene.family==='brauer') {
+      for(let i=0;i<n;i++)coords.push(n===1?[W/2,H/2]:[W/2+Math.cos(i*2*Math.PI/n-Math.PI/2)*Math.min(W*.38,60),H/2+Math.sin(i*2*Math.PI/n-Math.PI/2)*(H*.36)]);
+    } else if(q.positions){const xs=q.positions.map(p=>p[0]),ys=q.positions.map(p=>p[1]),xmin=Math.min(...xs),ymin=Math.min(...ys),dx=Math.max(...xs)-xmin,dy=Math.max(...ys)-ymin;
+      q.positions.forEach(([x,y])=>coords.push([dx?22+(x-xmin)*(W-44)/dx:W/2,dy?22+(y-ymin)*(H-44)/dy:H/2]));
+    } else for(let i=0;i<n;i++)coords.push([22+i*(W-44)/Math.max(n-1,1),H*.5+(n>3?(i%2===0?-14:14):0)]);
+    let out=`<svg viewBox="0 0 ${W} ${H}" width="100%" xmlns="http://www.w3.org/2000/svg"><defs><marker id="mini-arrow" markerWidth="5" markerHeight="5" refX="4" refY="2.5" orient="auto"><path d="M0 0L5 2.5L0 5" fill="none" stroke="#607485"/></marker></defs>`;
+    const grouped=new Map();q.edges.forEach(([a,b])=>{const key=a+','+b;grouped.set(key,(grouped.get(key)||0)+1);});
+    for(const[key,m]of grouped){const[a,b]=key.split(',').map(Number),[x,y]=coords[a],[u,v]=coords[b],dx=u-x,dy=v-y,d=Math.hypot(dx,dy)||1;
+      if(a===b)out+=`<path d="M${x-6} ${y-8}C${x-32} ${y-41} ${x+32} ${y-41} ${x+6} ${y-8}" fill="none" stroke="#607485" marker-end="url(#mini-arrow)"/>`;
+      else out+=`<path d="M${x+dx/d*12} ${y+dy/d*12}L${u-dx/d*14} ${v-dy/d*14}" fill="none" stroke="#607485" marker-end="url(#mini-arrow)"/>`;
+      if(m>1)out+=`<text x="${(x+u)/2}" y="${(y+v)/2-7}" text-anchor="middle" font-size="10" fill="#607485">${m}</text>`;
+    }
+    coords.forEach(([x,y],i)=>out+=`<circle cx="${x}" cy="${y}" r="10" fill="white" stroke="#b8cbd5"/><text x="${x}" y="${y+3.5}" text-anchor="middle" font-size="10" fill="#183044">${i+1}</text>`);
+    $('quiver-mini').innerHTML=out+'</svg>';
+  }
+  const defs=`<defs><marker id="arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L7 3.5L0 7" fill="none" stroke="#8ba1af" stroke-width="1.3"/></marker><marker id="tau-arrow" markerWidth="7" markerHeight="7" refX="6" refY="3.5" orient="auto" markerUnits="userSpaceOnUse"><path d="M0 0L7 3.5L0 7" fill="none" stroke="#087f83" stroke-width="1.5"/></marker></defs>`;
+  function positions(d) {
+    const map=new Map(),tubular=d.family==='cyclic'||d.family==='tube';let W,H;
+    if(d.family==='tree'){W=Math.max(540,(d.e+1)*180+30);H=Math.max(360,d.cylinderHeight*86+120);d.nodes.forEach(n=>map.set(n.id,{x:70+n.column*180,y:H-65-(n.row-1)*86,w:n.projective?65:95,h:32}));}
+    else if(tubular){W=Math.max(540,(d.n+1)*132+60);H=Math.max(345,d.L*68+100);d.nodes.forEach(n=>map.set(n.id,{x:70+n.column*132,y:H-65-(n.row-1)*68,w:95,h:32}));}
+    else {
+      const n=d.quiver.vertices,rank=Array(n).fill(0),inDeg=Array(n).fill(0),out=Array.from({length:n},()=>[]);
+      d.quiver.edges.forEach(([a,b])=>{out[a].push(b);inDeg[b]++;});const stack=[];inDeg.forEach((x,i)=>{if(x===0)stack.push(i);});
+      for(let s=0;s<stack.length;s++){const a=stack[s];out[a].forEach(b=>{rank[b]=Math.max(rank[b],rank[a]+1);if(--inDeg[b]===0)stack.push(b);});}
+      const span=Math.max(...rank),step=Math.max(155,(span+1)*60);
+      d.nodes.forEach(n=>{const x=n.component==='preinjective'?-n.layer*step-rank[n.vertex]*65:n.layer*step-rank[n.vertex]*65;map.set(n.id,{x,y:62+n.vertex*62,w:95,h:32});});
+      const min=Math.min(...Array.from(map.values(),p=>p.x)),max=Math.max(...Array.from(map.values(),p=>p.x));map.forEach(p=>p.x=p.x-min+70);W=Math.max(550,max-min+150);H=Math.max(345,n*62+60);
+    }return {map,W,H};
+  }
+  function edgePath(a,b,kind,oneColumn) {
+    if(oneColumn){const dx=kind==='inclusion'?28:-28;return `M${a.x+dx/3} ${a.y+(b.y>a.y?16:-16)} Q${a.x+dx*2} ${(a.y+b.y)/2} ${b.x+dx/3} ${b.y+(b.y>a.y?-20:20)}`;}
+    const dx=b.x-a.x,dy=b.y-a.y,len=Math.hypot(dx,dy)||1;
+    const trim=(p,sign,extra)=>{const s=Math.min(p.w/2/Math.max(Math.abs(dx/len),.001),p.h/2/Math.max(Math.abs(dy/len),.001))+extra;return[p.x+sign*dx/len*s,p.y+sign*dy/len*s];};
+    const s=trim(a,1,3),t=trim(b,-1,7);return `M${s[0]} ${s[1]}L${t[0]} ${t[1]}`;
+  }
+  function renderGraph(d, layout) {
+    const {map,W,H}=layout,tubular=d.family==='cyclic'||d.family==='tube'||d.family==='tree',tree=d.family==='tree',step=tree?180:132;let out='';
+    const grouped=new Map();
+    for(const e of d.edges){const key=e.source+'|'+e.target+'|'+(e.kind||'');if(grouped.has(key))grouped.get(key).multiplicity+=(e.multiplicity||1);else grouped.set(key,{...e,multiplicity:e.multiplicity||1});}
+    for(const e of grouped.values()) {
+      let a=map.get(e.source),b=map.get(e.target);if(!a||!b)continue;
+      if(tubular&&d.n>1&&(tree?d.nodes.find(n=>n.id===e.source).column===0&&d.nodes.find(n=>n.id===e.target).column>=d.n-1:e.kind==='inclusion'&&a.x===70&&b.x>70))a={...a,x:70+d.n*step};
+      const opacity=selectedId&&(e.source===selectedId||e.target===selectedId)?1:.72;
+      const kind=tree?(d.nodes.find(n=>n.id===e.source).compositionLength<d.nodes.find(n=>n.id===e.target).compositionLength?'inclusion':'quotient'):e.kind;
+      out+=`<path class="edge" data-source="${e.source}" data-target="${e.target}" d="${edgePath(a,b,kind,tubular&&d.n===1)}" stroke="#8ba1af" stroke-width="${e.multiplicity>1?1.8:1.35}" opacity="${opacity}" fill="none" marker-end="url(#arrow)"/>`;
+      if(e.multiplicity>1)out+=`<text x="${(a.x+b.x)/2}" y="${(a.y+b.y)/2-7}" text-anchor="middle" font-size="11" fill="#607485">${e.multiplicity}</text>`;
+    }
+    if(tubular){
+      if(d.n>1){const gx=70+d.n*step;out+=`<path d="M${gx} 34V${H-35}" stroke="#b8cbd5" stroke-dasharray="4 5"/><text x="${gx}" y="22" text-anchor="middle" font-size="11" fill="#8ba1af">第 1 列重复</text>`;d.nodes.filter(n=>n.column===0).forEach(n=>{const p=map.get(n.id);out+=nodeMarkup(n,{...p,x:gx},true);});}
+      if(d.family==='tube')out+=`<text x="${Math.max(190,W/2)}" y="26" text-anchor="middle" font-size="12" fill="#bb6534">⋮ 准长度无上界 ⋮</text>`;
+    } else if(!scene.finite){const side=d.nodes[0]?.component==='preinjective'?'左侧':'右侧';out+=`<text x="${W/2}" y="${H-15}" text-anchor="middle" font-size="12" fill="#bb6534">向${side}无限延伸 ⋯</text>`;}
+    d.nodes.forEach(n=>out+=nodeMarkup(n,map.get(n.id),false));
+    if($('show-tau').checked&&selectedId){const n=d.nodes.find(n=>n.id===selectedId),a=map.get(selectedId),b=n&&map.get(n.tauId);
+      if(a&&b){const self=n.id===n.tauId,path=self?`M${a.x-18} ${a.y-18}C${a.x-65} ${a.y-65} ${a.x+65} ${a.y-65} ${a.x+18} ${a.y-18}`:`M${a.x} ${a.y-21}Q${(a.x+b.x)/2} ${Math.min(a.y,b.y)-63} ${b.x} ${b.y-22}`;
+        out+=`<path d="${path}" fill="none" stroke="#087f83" stroke-width="1.7" stroke-dasharray="5 4" marker-end="url(#tau-arrow)"/><text x="${self?a.x:(a.x+b.x)/2}" y="${self?a.y-54:Math.min(a.y,b.y)-44}" text-anchor="middle" font-size="12" fill="#087f83">τ</text>`;}
+    }
+    return out;
+  }
+  function nodeMarkup(n,p,ghost) {
+    const c=nodeColor(n),sel=n.id===selectedId&&!ghost,title=`${label(n)} · dim ${dims(n)}${n.projective?' · 投射':''}${n.injective?' · 内射':''}`;
+    return `<g class="module" data-node="${n.id}" data-ghost="${ghost}" role="button" tabindex="${ghost?-1:0}" ${ghost?'aria-hidden="true"':''} aria-label="${esc(title)}" opacity="${ghost?.32:1}"><title>${esc(title)}</title><rect x="${p.x-p.w/2}" y="${p.y-p.h/2}" width="${p.w}" height="${p.h}" rx="7" fill="${sel?'#d9efea':'#fff'}" stroke="${sel?'#087f83':ghost?'#a7b7c1':c}" stroke-width="${sel?2.4:1.3}" ${ghost?'stroke-dasharray="4 3"':''}/><text x="${p.x}" y="${p.y+4}" text-anchor="middle" font-size="11" font-family="ui-monospace,Consolas,sans-serif" fill="${c}">${esc(label(n))}</text></g>`;
+  }
+  function overview() {
+    const W=920,H=405;let out=`<text x="460" y="33" font-size="14" fill="#183044" text-anchor="middle">Γ(mod-A) = 预投射 ⊔ 正则管族 ⊔ 预内射</text>`;
+    const boxes=[{x:22,w:228,title:'预投射 P',sub:'离散 · τ⁻ᵗPᵢ',view:'preprojective'},{x:273,w:374,title:'正则 R',sub:'ℙ¹(k) 参数化的管族',view:'regular'},{x:670,w:228,title:'预内射 I',sub:'离散 · τᵗIᵢ',view:'preinjective'}];
+    boxes.forEach(b=>out+=`<g data-goto="${b.view}" role="button" tabindex="0" aria-label="展开${b.title}" style="cursor:pointer"><rect x="${b.x}" y="59" width="${b.w}" height="285" rx="14" fill="#fff" stroke="#d5e2e8"/><text x="${b.x+b.w/2}" y="88" text-anchor="middle" font-size="15" fill="#183044">${b.title}</text><text x="${b.x+b.w/2}" y="111" text-anchor="middle" font-size="11" fill="#607485">${b.sub}</text></g>`);
+    const chain=(start,y,injective=false)=>{for(let j=0;j<4;j++){const x=start+j*46,c=injective?(j>1?'#4774ba':'#087f83'):(j<2?'#bb6534':'#087f83');out+=`<circle cx="${x}" cy="${y+(j%2)*32}" r="5" fill="${c}"/>`;if(j<3){const end=x+46,Y=y+((j+1)%2)*32;out+=`<path d="M${x+7} ${y+(j%2)*32}L${end-7} ${Y}" stroke="#8ba1af" fill="none" marker-end="url(#arrow)"/>`;}}};
+    chain(62,173);chain(62,239);chain(710,173,true);chain(710,239,true);
+    out+=`<text x="218" y="210" font-size="18" fill="#8ba1af">⋯</text><text x="684" y="210" font-size="18" fill="#8ba1af">⋯</text>`;
+    const display=scene.ranks.concat([1,1]).slice(0,5),cx=display.length;
+    display.forEach((rank,k)=>{const x=313+k*(295/Math.max(1,cx-1));out+=`<ellipse cx="${x}" cy="164" rx="18" ry="6" fill="#f1faf8" stroke="#6daea9" stroke-dasharray="3 3"/><path d="M${x-18} 164V254 M${x+18} 164V254" stroke="#6daea9" fill="none"/><ellipse cx="${x}" cy="254" rx="18" ry="6" fill="#f1faf8" stroke="#6daea9"/><text x="${x}" y="283" text-anchor="middle" font-size="11" fill="#607485">秩 ${rank}</text><text x="${x}" y="211" text-anchor="middle" font-size="18" fill="#6daea9">⋮</text>`;});
+    out+=`<text x="460" y="319" text-anchor="middle" font-size="11" fill="#607485">例外秩：${scene.ranks.length?scene.ranks.join(', '):'无'}；其余所有参数对应秩 1 管</text><text x="460" y="379" text-anchor="middle" font-size="12" fill="#607485">点上方分支按钮展开。此视图概括分支形状，圆点不是全部模。</text>`;
+    return{W,H,out};
+  }
+  function draw() {
+    if(!scene||!current)return;
+    const svg=$('graph');let W,H,out;
+    if(scene.family==='affine'&&view==='overview'){({W,H,out}=overview());pos=new Map();}
+    else{const layout=positions(current);pos=layout.map;W=layout.W;H=layout.H;out=renderGraph(current,layout);}
+    // Leave enough natural width for dense E-type graphs, rather than shrinking labels to illegibility.
+    svg.setAttribute('viewBox',`0 0 ${W} ${H}`);svg.setAttribute('width',String(W));svg.style.width=`${(scene.family==='affine'&&view==='overview'?100:Math.max(100,W/8.2))*num('zoom')/100}%`;
+    svg.innerHTML=defs+`<title>${esc($('algebra-title').textContent)} — ${esc($('scope-badge').textContent)}</title><desc>${esc($('graph-note').textContent)}</desc>`+out;
+    svg.querySelectorAll('[data-node]').forEach(g=>{const fn=()=>selectNode(g.dataset.node);g.addEventListener('click',fn);g.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();fn();}});});
+    svg.querySelectorAll('[data-goto]').forEach(g=>{const fn=()=>{view=g.dataset.goto;regenerate();};g.addEventListener('click',fn);g.addEventListener('keydown',e=>{if(e.key==='Enter'){fn();}});});
+  }
+  function selectNode(id){if(!scene||!current)return;selectedId=id;draw();inspect();renderTable();}
+  function inspect() {
+    const n=chosen();if(scene.family==='affine'&&view==='overview'){
+      $('inspector').innerHTML='<div class="eyebrow">03 / READ THE STRUCTURE</div><h2>三个区域，不同分支</h2><div class="module-name">P ⊔ R ⊔ I</div><p class="inspection-note">两侧是离散序列；中间每个 λ 对应一根无限高的管。先选择分支，再点击模。</p><div class="divider"></div><p class="inspection-note">虚根 δ='+esc('('+scene.delta.join(',')+')')+'。同质管每个准长度 ℓ 有一个模，维数向量 ℓδ；不同 λ 给出不同同构类。</p>';return;
+    }
+    if(!n){$('inspector').innerHTML='<p class="empty">当前没有顶点。</p>';return;}
+    const tau=n.tauId?current.nodes.find(x=>x.id===n.tauId):null;
+    let dimension=n.dimension?dims(n):'Σ dim Eₛ（见下）',extra='',description='';
+    if(n.kind==='brauer-tree'){
+      const factors=a=>a.map((c,i)=>c?`S${i+1}${c>1?'^'+c:''}`:'').filter(Boolean).join(' ⊕ ');
+      extra=`<div class="small">顶：${esc(factors(n.top))}</div><div class="small">底：${esc(factors(n.socle))}</div><div class="divider"></div><div class="small">${n.projective?'由树两端数据构造的投射表示':'字符串（逆词代表同一个模）'}</div><span class="tree-basis">${esc(n.projective?'P'+(n.projectiveVertex+1):n.wordLabel)}</span><details><summary class="small">查看基与箭头作用</summary><span class="tree-basis">${n.basisVertices.map((v,i)=>`z${i+1}@${v+1}`).join(', ')}</span><div class="tree-rep-scroll">${n.arrowMaps.map((pairs,i)=>pairs.length?'<p>a'+(i+1)+': '+pairs.map(([s,t])=>`z${s+1}→z${t+1}`).join(', ')+'</p>':'').join('')}</div><span class="micro">系数均为 1；未列出的基向量像为 0。@ 后为 quiver 顶点（树边）编号。</span></details>`;
+      description=`组成长度 ${n.compositionLength}；dim End=${n.endDimension}，rad End 维数 ${n.endDimension-1}。${n.projective?'其 radical 与 socle 商按真实表示识别，不能套用星形的最长单列模。':'这是 socle 商的一个完整枚举字符串，再沿 A→A/soc A 看作 A 模。'}维数向量相同仍可能不同构。`;
+    } else if(n.kind==='cyclic'){
+      const comps=Array.from({length:n.length},(_,s)=>'S'+((n.top+s)%current.n+1));
+      extra='<div class="small">组成因子 · 顶 → 底</div><div class="composition">'+comps.map(x=>'<span>'+x+'</span>').join('')+'</div>';
+      description=`顶 S${n.top+1} 与长度 ${n.length} 唯一确定这个单列模。End ≅ k[ε]/(ε^${n.endDimension})，ε 沿 ${current.n} 层移动；同维数向量不能代替同构判别。`;
+    } else if(n.kind==='tube'){
+      const quasi=Array.from({length:n.quasiLength},(_,s)=>'E'+((n.column+s)%n.rank+1));
+      extra='<div class="small">准组成因子 · 正则顶 → 底</div><div class="composition">'+quasi.map(x=>'<span>'+x+'</span>').join('')+'</div>';
+      description=`准长度 ${n.quasiLength}；τ 周期 ${n.rank}。${n.rank===1?'维数向量为 ℓδ；λ 区分不同同质管。':'Eₛ 是本管的准单模，所有 Eₛ 的维数之和为 δ。这里没有给出具体准单根的坐标。'}${n.boundary?' 此顶点在当前窗口顶端，图上方还有模。':''}`;
+      if(scene.type==='K')description+=' Kronecker 的 λ∈k 模可用两箭头 (Iℓ,Jℓ(λ)) 表示；λ=∞ 用 (Jℓ(0),Iℓ)。';
+    } else {
+      description=scene.finite?'在此 Dynkin quiver 上，这个正根维数向量唯一确定一个不可分解同构类。此面板给出同构类和 AR 位置，未输出具体箭头矩阵。':`这是 ${n.component==='preinjective'?'τᵗIᵢ':'τ⁻ᵗPᵢ'} 序列中的一个模。Coxeter 变换决定其维数向量。${n.boundary?'当前窗口在此截断。':''}`;
+    }
+    const outside=n.tauOutside||n.tauId&&!tau;const tauText=tau?label(tau):outside?'窗口外（非零）':'0（投射）';
+    $('inspector').innerHTML=`<div class="eyebrow">03 / MODULE INSPECTOR</div><h2>所选不可分解模</h2><div class="module-name">${esc(label(n))}</div><div class="detail-grid"><span>维数向量</span><b>${esc(dimension)}</b><span>总维数</span><b>${n.dimension?n.dimension.reduce((a,b)=>a+b,0):'未展开'}</b><span>投射 / 内射</span><b>${n.projective?'是':'否'} / ${n.injective?'是':'否'}</b><span>τM</span><b>${esc(tauText)}</b></div>${extra}<p class="inspection-note">${esc(description)}</p>${tau?'<button class="tau-btn" id="follow-tau">选中 τM →</button>':''}`;
+    if(tau)$('follow-tau').addEventListener('click',()=>selectNode(tau.id));
+  }
+  function describe() {
+    let intro='',details='',bars=[];
+    if(scene.family==='tree'){
+      const r=scene.fullReport,counts=new Map();current.nodes.forEach(n=>counts.set(n.compositionLength,(counts.get(n.compositionLength)||0)+1));bars=[...counts].sort((a,b)=>a[0]-b[0]);
+      intro=`<p><strong>完整分类：${r.stableCount} 个非投射字符串模 + ${r.e} 个投射模 = ${r.fullCount} 个不可分解同构类。</strong>枚举到合法字符串的扩展耗尽；逆词去重，不按维数向量合并。</p>`;
+      const path=ids=>ids.map(i=>'a'+(i+1)).join('·'),relations=r.relations.zeroPaths.map(a=>path(a)+'=0').concat(r.relations.commutativity.map(a=>path(a.left)+' = '+path(a.right)));
+      details=`<p>稳定图为 ℤA${r.e*r.multiplicity}/〈τ^${r.e}〉；完整图额外包含每个 Pᵢ 的真实附着。当前树的代数维数是 <strong>${r.algebraDimension}</strong>，来自 Σᵥ mᵥdeg(v)²；不可分解模数 ${r.fullCount} 是另一项数量。</p><details><summary>代数的 quiver 与关系</summary><div class="tree-algebra-details"><code>${r.quiver.arrows.map(a=>`a${a.id+1}: ${a.source+1}→${a.target+1} （树顶点 ${a.treeVertex}）`).map(esc).join('<br>')}<br>${relations.map(esc).join('<br>')}</code></div></details><p>k=GF(5)，右模。Hom 由精确交换方程求解；稳定箭头来自 socle 商上的 rad/rad²，再补投射附着。τ 由完整 Hom 列唯一匹配识别。导出 JSON 包含树、关系、全部基与箭头矩阵、Hom 矩阵及完整图。</p>`;
+    } else if(scene.family==='dynkin'){
+      intro='<p><strong>有限个离散同构类。</strong>每个顶点对应一个正根；一般模是这些不可分解模的有限直和。</p>';
+      const counts=new Map();current.nodes.forEach(n=>{const d=n.dimension.reduce((a,b)=>a+b,0);counts.set(d,(counts.get(d)||0)+1);});bars=Array.from(counts).sort((a,b)=>a[0]-b[0]);
+      details='<p>横轴是总维数，柱高是该维数的不可分解同构类数。改变定向可能改变箭头及 P/I 位置；维数向量的正根集合保持不变。</p>';
+    } else if(scene.family==='cyclic'||scene.family==='brauer') {
+      intro=`<p><strong>每个长度 ℓ 有 ${scene.n} 个模</strong>，分别以 S₁,…,S${scene.n} 为顶。完整范围 ℓ=1,…,${scene.L}；共 ${scene.n*scene.L} 个。当前${current.stable?'稳定图已去掉长度 L 的模':'包含全部模'}。</p>`;
+      bars=Array.from({length:current.stable?scene.L-1:scene.L},(_,i)=>[i+1,scene.n]);
+      details=`<p>稳定图形状：ℤA${scene.L-1}/〈τ^${scene.n}〉，是<strong>有限</strong>高度的圆柱。非投射模的 τ 周期为 ${scene.n}。${scene.family==='brauer'?`取 L=nm+1=${scene.L}，代数对称。三边 m=1 / m=2 的模数分别为 12 / 21。`:`代数自内射；${(scene.L-1)%scene.n===0?'这里 L≡1 (mod n)，也是对称代数。':'这里 L≢1 (mod n)，一般不是对称代数；不能把 τ 等同于 Ω²。'}`}</p>`;
+    } else {
+      const kr=scene.type==='K',standard=scene.quiver.edges[0][0]===0;
+      const pdim=standard?'(r,r+1)':'(r+1,r)',idim=standard?'(r+1,r)':'(r,r+1)';
+      intro=`<div class="tame-parts"><div class="part"><b>预投射 · 离散</b><span>${kr?'Pᵣ：'+pdim+'，r≥0':'τ⁻ᵗPᵢ，t≥0；每层 |Q₀| 个'}</span></div><div class="part"><b>正则 · 一参数族</b><span>例外秩：${scene.ranks.join(', ')||'无'}；其余秩 1</span></div><div class="part"><b>预内射 · 离散</b><span>${kr?'Iᵣ：'+idim+'，r≥0':'τᵗIᵢ，t≥0；每层 |Q₀| 个'}</span></div></div>`;
+      const exceptional=scene.ranks.length?`例外参数集合 D 有 ${scene.ranks.length} 个点；管秩依次为 (${scene.ranks.join(',')})。`:'没有例外管。';
+      details=`<p>${exceptional}每个 λ∈ℙ¹(k)∖D 对应一根同质管，每个准长度 ℓ≥1 有一个维数向量 ℓδ 的模；同样的维数向量在不同 λ 处给出不同同构类。</p><p>秩 r 的例外管每个准长度有 r 个顶点，τ 周期为 r。管的高度没有上界；它不是 Brauer 星的有限圆柱。</p>`;
+      if(view==='regular')bars=Array.from({length:scene.depth},(_,i)=>[i+1,scene.rank]);
+      else if(view!=='overview') {const counts=new Map();current.nodes.forEach(n=>counts.set(n.layer,(counts.get(n.layer)||0)+1));bars=Array.from(counts).sort((a,b)=>a[0]-b[0]);}
+      if(kr)details+='<p>Kronecker：Pᵣ ⇉ Pᵣ₊₁，Iᵣ₊₁ ⇉ Iᵣ；相邻位置之间有两条不可约态射。τPᵣ=Pᵣ₋₂（r≥2），τIᵣ=Iᵣ₊₂，τRλ(ℓ)=Rλ(ℓ)。</p>';
+      if(view==='regular'&&scene.rank>1)details+='<p><strong>坐标范围：</strong>当前例外管用抽象准单模 Eₛ 标记；只有准长度为管秩倍数时展开为 qδ。未生成其余顶点的具体维数坐标，也未指定例外参数在 ℙ¹ 上的数值。</p>';
+    }
+    $('distribution-description').innerHTML=intro;$('structure-description').innerHTML=details;
+    $('distribution-title').textContent=scene.family==='affine'?'整个模范畴如何分布':'不可分解模的维数与层次';
+    if(bars.length){const max=Math.max(...bars.map(b=>b[1]));$('distribution-chart').innerHTML='<div class="distribution">'+bars.map(([x,y])=>`<div class="bar-wrap" title="${x}: ${y} 个"><b>${y}</b><div class="bar" style="height:${y/max*56}px"></div><small>${x}</small></div>`).join('')+'</div>';
+      $('distribution-chart').insertAdjacentHTML('beforeend','<div class="micro">横轴：'+(scene.family==='dynkin'?'总维数':scene.family==='affine'?(view==='regular'?'准长度（当前一个管）':'τ 迭代层数'):'组成长度')+'；柱高：当前范围内的模数</div>');
+    }else $('distribution-chart').innerHTML='';
+  }
+  function renderTable() {
+    if(!scene||!current)return;
+    const overviewMode=scene.family==='affine'&&view==='overview';
+    $('module-table-title').textContent=overviewMode?'分支目录':scene.finite?(current.stable?'全部非投射不可分解模':'全部不可分解模'):'当前窗口中的模（不穷尽）';
+    $('module-search').hidden=overviewMode;
+    if(overviewMode){$('module-table').innerHTML='<tr><td>预投射</td><td>dim τ⁻ᵗPᵢ=C⁻ᵗ dim Pᵢ</td><td>含全部 Pᵢ</td><td>向 Pᵢ 边界移动</td></tr><tr><td>正则管族</td><td>同质管 ℓδ；例外管用 Eₛ[ℓ]</td><td>无 P/I</td><td>周期 r</td></tr><tr><td>预内射</td><td>dim τᵗIᵢ=Cᵗ dim Iᵢ</td><td>含全部 Iᵢ</td><td>无上界</td></tr>';return;}
+    const search=val('module-search').trim().toLowerCase(),filtered=current.nodes.filter(n=>(label(n)+' '+dims(n)).toLowerCase().includes(search));
+    $('module-table').innerHTML=filtered.map(n=>{const tau=current.nodes.find(x=>x.id===n.tauId);return `<tr data-node="${n.id}" class="${n.id===selectedId?'selected':''}" aria-selected="${n.id===selectedId}"><td>${esc(label(n))}</td><td>${esc(dims(n))}</td><td>${n.projective?'P':''}${n.projective&&n.injective?' / ':''}${n.injective?'I':''}${!n.projective&&!n.injective?'—':''}</td><td>${esc(tau?label(tau):n.tauId||n.tauOutside?'窗口外（非零）':'0')}</td></tr>`;}).join('')||'<tr><td colspan="4">没有匹配的模。</td></tr>';
+    $('module-table').querySelectorAll('tr[data-node]').forEach(tr=>tr.addEventListener('click',()=>selectNode(tr.dataset.node)));
+  }
+  function download(name,body,type){const url=URL.createObjectURL(new Blob([body],{type})),a=document.createElement('a');a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),3000);toast('已导出 '+name);}
+  $('export-svg').addEventListener('click',()=>{
+    if(!scene||!current){toast('尚未得到完整计算结果');return;}
+    const svg=$('graph').cloneNode(true),box=svg.getAttribute('viewBox').split(' ').map(Number),W=box[2],H=box[3];svg.removeAttribute('style');svg.setAttribute('width',W);svg.setAttribute('height',H+105);svg.setAttribute('viewBox',`0 0 ${W} ${H+105}`);
+    const text=document.createElementNS('http://www.w3.org/2000/svg','text');text.setAttribute('x','20');text.setAttribute('y',H+24);text.setAttribute('font-size','13');text.setAttribute('fill','#183044');text.textContent=$('algebra-title').textContent+' · '+$('scope-badge').textContent;svg.append(text);
+    const desc=document.createElementNS('http://www.w3.org/2000/svg','text');desc.setAttribute('x','20');desc.setAttribute('y',H+48);desc.setAttribute('font-size','10');desc.setAttribute('fill','#607485');desc.textContent='右模 · '+(scene.family==='tree'?'GF(5) · 全部字符串及真实投射模；精确 Hom/rad²；重复顶点不计数':'k 代数闭 · '+(scene.family==='affine'?`分支结构；窗口深度 ${scene.depth}；ℙ¹(k) 参数族未穷尽`:'理论分类公式生成；虚线列重复顶点不计数'));svg.append(desc);
+    download('ar-quiver-'+val('family')+'.svg','<?xml version="1.0" encoding="UTF-8"?>\n'+new XMLSerializer().serializeToString(svg),'image/svg+xml');
+  });
+  $('export-json').addEventListener('click',()=>{
+    if(!scene||!current){toast('尚未得到完整计算结果');return;}
+    if(scene.family==='tree'){const data={...scene.fullReport,view:current.stable?'stable':'full',displayedNodeIds:current.nodes.map(n=>n.id),notes:$('graph-note').textContent,homMatrixNodeOrder:scene.fullReport.nodes.map(n=>n.id)};download('ar-quiver-brauer-tree.json',JSON.stringify(data,null,2),'application/json');return;}
+    const data={schema:'quiver-atlas-1.0',algebra:$('algebra-title').textContent,formula:$('algebra-formula').textContent,field:'algebraically closed k',convention:'finite-dimensional right modules; maps follow Q arrows',view:scene.family==='affine'?view:current.stable?'stable':'full',
+      completeness:scene.family==='affine'?'full component-family structure; finite windows only':current.stable?'complete stable AR quiver; projectives excluded':'complete module-category AR quiver',
+      notes:$('graph-note').textContent,quiver:scene.quiver||current.quiver,
+      parameters:{n:scene.n,L:scene.L,m:scene.m,depth:scene.depth,rank:scene.rank,parameter:scene.parameter},
+      componentStructure:scene.family==='affine'?{preprojective:'tau^(-t) P_i, t>=0',preinjective:'tau^t I_i, t>=0',regular:{index:'P^1(k)',exceptionalRanks:scene.ranks,otherRanks:1,delta:scene.delta}}:null,
+      windows:scene.family==='affine'&&view==='overview'?{preprojective:scene.pp,preinjective:scene.pi,sampleTube:scene.regular}:{nodes:current.nodes,edges:current.edges},
+      limitations:['Classification-driven formulas, not a general QPA solver','Exceptional tube quasi-simple dimension coordinates not computed','Concrete arrow matrices of representations not exported','Not a finite-field regular-module enumerator']};
+    download('ar-quiver-'+val('family')+'.json',JSON.stringify(data,null,2),'application/json');
+  });
+  const safeRegenerate=()=>{try{regenerate();}catch(e){$('graph-note').textContent='生成失败：'+e.message;console.error(e);}};
+  BrauerTreeEditor.init(input=>{treeInput=input;selectedId=null;safeRegenerate();});treeInput=BrauerTreeEditor.getSnapshot();
+  $('tree-cancel').addEventListener('click',()=>{treeJob++;stopTreeWorker();$('tree-progress').hidden=true;BrauerTreeEditor.setStatus('已取消；可修改输入后重试');$('graph-note').textContent='计算已取消，没有输出部分结果。';});
+  document.querySelectorAll('.settings select,.settings input').forEach(el=>el.addEventListener(el.type==='range'?'input':'change',safeRegenerate));
+  $('zoom').addEventListener('input',draw);$('module-search').addEventListener('input',renderTable);
+  document.querySelectorAll('[data-view]').forEach(b=>b.addEventListener('click',()=>{view=b.dataset.view;selectedId=null;safeRegenerate();}));
+  document.querySelectorAll('[data-preset]').forEach(b=>b.addEventListener('click',()=>{
+    $('stable').checked=false;$('orientation').value='forward';$('size').min='1';$('size').max='12';$('size').value='3';$('module-search').value='';selectedId=null;
+    if(b.dataset.preset==='a3'){$('family').value='dynkin';$('dynkin-type').value='A';}
+    else if(b.dataset.preset==='kronecker'){$('family').value='affine';$('affine-type').value='K';view='overview';}
+    else{$('family').value='brauer';$('multiplicity').value=b.dataset.preset==='m1'?'1':'2';}
+    safeRegenerate();
+  }));
+  window.addEventListener('hashchange',()=>{const name=location.hash.slice(1);if(['explore','classification','methods'].includes(name))setPanel(name);});
+  safeRegenerate();
+})();
+
+</script>
+</body></html>

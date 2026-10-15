@@ -1,0 +1,2399 @@
+{
+  "results/a3.json": {
+    "quiver": "1 -> 2 -> 3",
+    "field": "GF(5)",
+    "convention": "right modules; Hom rows=source, columns=target",
+    "modules": [
+      {
+        "label": "[1,1]",
+        "dimension_vector": [
+          1,
+          0,
+          0
+        ],
+        "endomorphism_dimension": 1,
+        "projective": false,
+        "injective": true,
+        "tau": "[2,2]"
+      },
+      {
+        "label": "[1,2]",
+        "dimension_vector": [
+          1,
+          1,
+          0
+        ],
+        "endomorphism_dimension": 1,
+        "projective": false,
+        "injective": true,
+        "tau": "[2,3]"
+      },
+      {
+        "label": "[1,3]",
+        "dimension_vector": [
+          1,
+          1,
+          1
+        ],
+        "endomorphism_dimension": 1,
+        "projective": true,
+        "injective": true,
+        "tau": null
+      },
+      {
+        "label": "[2,2]",
+        "dimension_vector": [
+          0,
+          1,
+          0
+        ],
+        "endomorphism_dimension": 1,
+        "projective": false,
+        "injective": false,
+        "tau": "[3,3]"
+      },
+      {
+        "label": "[2,3]",
+        "dimension_vector": [
+          0,
+          1,
+          1
+        ],
+        "endomorphism_dimension": 1,
+        "projective": true,
+        "injective": false,
+        "tau": null
+      },
+      {
+        "label": "[3,3]",
+        "dimension_vector": [
+          0,
+          0,
+          1
+        ],
+        "endomorphism_dimension": 1,
+        "projective": true,
+        "injective": false,
+        "tau": null
+      }
+    ],
+    "hom_matrix": [
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        1,
+        1,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0,
+        1,
+        1
+      ]
+    ],
+    "ar_arrows": [
+      [
+        "[1,2]",
+        "[1,1]"
+      ],
+      [
+        "[1,3]",
+        "[1,2]"
+      ],
+      [
+        "[2,2]",
+        "[1,2]"
+      ],
+      [
+        "[2,3]",
+        "[1,3]"
+      ],
+      [
+        "[2,3]",
+        "[2,2]"
+      ],
+      [
+        "[3,3]",
+        "[2,3]"
+      ]
+    ]
+  },
+  "results/brauer-star3/brauer-star3.json": {
+    "algebra": "kC3/J^4; Brauer star with three edges, all multiplicities one",
+    "quiver": "1 -> 2 -> 3 -> 1",
+    "relations": [
+      "abca=0",
+      "bcab=0",
+      "cabc=0"
+    ],
+    "field": "GF(5)",
+    "algebra_dimension": 12,
+    "convention": "right modules; factors top-to-socle; Hom rows=source, columns=target",
+    "classification_basis": "graded Jordan chains for the degree-one operator N with N^4=0",
+    "modules": [
+      {
+        "label": "M(1,1)",
+        "top": 1,
+        "length": 1,
+        "composition_factors": [
+          1
+        ],
+        "dimension_vector": [
+          1,
+          0,
+          0
+        ],
+        "endomorphism_dimension": 1,
+        "endomorphism_radical_dimension": 0,
+        "projective": false,
+        "injective": false,
+        "tau": "M(2,1)"
+      },
+      {
+        "label": "M(1,2)",
+        "top": 1,
+        "length": 2,
+        "composition_factors": [
+          1,
+          2
+        ],
+        "dimension_vector": [
+          1,
+          1,
+          0
+        ],
+        "endomorphism_dimension": 1,
+        "endomorphism_radical_dimension": 0,
+        "projective": false,
+        "injective": false,
+        "tau": "M(2,2)"
+      },
+      {
+        "label": "M(1,3)",
+        "top": 1,
+        "length": 3,
+        "composition_factors": [
+          1,
+          2,
+          3
+        ],
+        "dimension_vector": [
+          1,
+          1,
+          1
+        ],
+        "endomorphism_dimension": 1,
+        "endomorphism_radical_dimension": 0,
+        "projective": false,
+        "injective": false,
+        "tau": "M(2,3)"
+      },
+      {
+        "label": "M(1,4)",
+        "top": 1,
+        "length": 4,
+        "composition_factors": [
+          1,
+          2,
+          3,
+          1
+        ],
+        "dimension_vector": [
+          2,
+          1,
+          1
+        ],
+        "endomorphism_dimension": 2,
+        "endomorphism_radical_dimension": 1,
+        "projective": true,
+        "injective": true,
+        "tau": null
+      },
+      {
+        "label": "M(2,1)",
+        "top": 2,
+        "length": 1,
+        "composition_factors": [
+          2
+        ],
+        "dimension_vector": [
+          0,
+          1,
+          0
+        ],
+        "endomorphism_dimension": 1,
+        "endomorphism_radical_dimension": 0,
+        "projective": false,
+        "injective": false,
+        "tau": "M(3,1)"
+      },
+      {
+        "label": "M(2,2)",
+        "top": 2,
+        "length": 2,
+        "composition_factors": [
+          2,
+          3
+        ],
+        "dimension_vector": [
+          0,
+          1,
+          1
+        ],
+        "endomorphism_dimension": 1,
+        "endomorphism_radical_dimension": 0,
+        "projective": false,
+        "injective": false,
+        "tau": "M(3,2)"
+      },
+      {
+        "label": "M(2,3)",
+        "top": 2,
+        "length": 3,
+        "composition_factors": [
+          2,
+          3,
+          1
+        ],
+        "dimension_vector": [
+          1,
+          1,
+          1
+        ],
+        "endomorphism_dimension": 1,
+        "endomorphism_radical_dimension": 0,
+        "projective": false,
+        "injective": false,
+        "tau": "M(3,3)"
+      },
+      {
+        "label": "M(2,4)",
+        "top": 2,
+        "length": 4,
+        "composition_factors": [
+          2,
+          3,
+          1,
+          2
+        ],
+        "dimension_vector": [
+          1,
+          2,
+          1
+        ],
+        "endomorphism_dimension": 2,
+        "endomorphism_radical_dimension": 1,
+        "projective": true,
+        "injective": true,
+        "tau": null
+      },
+      {
+        "label": "M(3,1)",
+        "top": 3,
+        "length": 1,
+        "composition_factors": [
+          3
+        ],
+        "dimension_vector": [
+          0,
+          0,
+          1
+        ],
+        "endomorphism_dimension": 1,
+        "endomorphism_radical_dimension": 0,
+        "projective": false,
+        "injective": false,
+        "tau": "M(1,1)"
+      },
+      {
+        "label": "M(3,2)",
+        "top": 3,
+        "length": 2,
+        "composition_factors": [
+          3,
+          1
+        ],
+        "dimension_vector": [
+          1,
+          0,
+          1
+        ],
+        "endomorphism_dimension": 1,
+        "endomorphism_radical_dimension": 0,
+        "projective": false,
+        "injective": false,
+        "tau": "M(1,2)"
+      },
+      {
+        "label": "M(3,3)",
+        "top": 3,
+        "length": 3,
+        "composition_factors": [
+          3,
+          1,
+          2
+        ],
+        "dimension_vector": [
+          1,
+          1,
+          1
+        ],
+        "endomorphism_dimension": 1,
+        "endomorphism_radical_dimension": 0,
+        "projective": false,
+        "injective": false,
+        "tau": "M(1,3)"
+      },
+      {
+        "label": "M(3,4)",
+        "top": 3,
+        "length": 4,
+        "composition_factors": [
+          3,
+          1,
+          2,
+          3
+        ],
+        "dimension_vector": [
+          1,
+          1,
+          2
+        ],
+        "endomorphism_dimension": 2,
+        "endomorphism_radical_dimension": 1,
+        "projective": true,
+        "injective": true,
+        "tau": null
+      }
+    ],
+    "hom_matrix": [
+      [
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        2,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        0,
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2
+      ]
+    ],
+    "ar_arrows": [
+      [
+        "M(1,1)",
+        "M(3,2)"
+      ],
+      [
+        "M(1,2)",
+        "M(1,1)"
+      ],
+      [
+        "M(1,2)",
+        "M(3,3)"
+      ],
+      [
+        "M(1,3)",
+        "M(1,2)"
+      ],
+      [
+        "M(1,3)",
+        "M(3,4)"
+      ],
+      [
+        "M(1,4)",
+        "M(1,3)"
+      ],
+      [
+        "M(2,1)",
+        "M(1,2)"
+      ],
+      [
+        "M(2,2)",
+        "M(1,3)"
+      ],
+      [
+        "M(2,2)",
+        "M(2,1)"
+      ],
+      [
+        "M(2,3)",
+        "M(1,4)"
+      ],
+      [
+        "M(2,3)",
+        "M(2,2)"
+      ],
+      [
+        "M(2,4)",
+        "M(2,3)"
+      ],
+      [
+        "M(3,1)",
+        "M(2,2)"
+      ],
+      [
+        "M(3,2)",
+        "M(2,3)"
+      ],
+      [
+        "M(3,2)",
+        "M(3,1)"
+      ],
+      [
+        "M(3,3)",
+        "M(2,4)"
+      ],
+      [
+        "M(3,3)",
+        "M(3,2)"
+      ],
+      [
+        "M(3,4)",
+        "M(3,3)"
+      ]
+    ],
+    "irreducible_multiplicities": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ]
+    ]
+  },
+  "results/brauer-star3-m2/brauer-star3-m2.json": {
+    "algebra": "kC3/J^7; Brauer star with three edges, exceptional multiplicity 2, leaf multiplicities one",
+    "quiver": "1 -> 2 -> 3 -> 1",
+    "relations": [
+      "abcabca=0",
+      "bcabcab=0",
+      "cabcabc=0"
+    ],
+    "field": "GF(5)",
+    "algebra_dimension": 21,
+    "convention": "right modules; factors top-to-socle; Hom rows=source, columns=target",
+    "classification_basis": "graded Jordan chains for the degree-one operator N with N^7=0",
+    "modules": [
+      {
+        "label": "M(1,1)",
+        "top": 1,
+        "length": 1,
+        "composition_factors": [
+          1
+        ],
+        "dimension_vector": [
+          1,
+          0,
+          0
+        ],
+        "endomorphism_dimension": 1,
+        "endomorphism_radical_dimension": 0,
+        "projective": false,
+        "injective": false,
+        "tau": "M(2,1)"
+      },
+      {
+        "label": "M(1,2)",
+        "top": 1,
+        "length": 2,
+        "composition_factors": [
+          1,
+          2
+        ],
+        "dimension_vector": [
+          1,
+          1,
+          0
+        ],
+        "endomorphism_dimension": 1,
+        "endomorphism_radical_dimension": 0,
+        "projective": false,
+        "injective": false,
+        "tau": "M(2,2)"
+      },
+      {
+        "label": "M(1,3)",
+        "top": 1,
+        "length": 3,
+        "composition_factors": [
+          1,
+          2,
+          3
+        ],
+        "dimension_vector": [
+          1,
+          1,
+          1
+        ],
+        "endomorphism_dimension": 1,
+        "endomorphism_radical_dimension": 0,
+        "projective": false,
+        "injective": false,
+        "tau": "M(2,3)"
+      },
+      {
+        "label": "M(1,4)",
+        "top": 1,
+        "length": 4,
+        "composition_factors": [
+          1,
+          2,
+          3,
+          1
+        ],
+        "dimension_vector": [
+          2,
+          1,
+          1
+        ],
+        "endomorphism_dimension": 2,
+        "endomorphism_radical_dimension": 1,
+        "projective": false,
+        "injective": false,
+        "tau": "M(2,4)"
+      },
+      {
+        "label": "M(1,5)",
+        "top": 1,
+        "length": 5,
+        "composition_factors": [
+          1,
+          2,
+          3,
+          1,
+          2
+        ],
+        "dimension_vector": [
+          2,
+          2,
+          1
+        ],
+        "endomorphism_dimension": 2,
+        "endomorphism_radical_dimension": 1,
+        "projective": false,
+        "injective": false,
+        "tau": "M(2,5)"
+      },
+      {
+        "label": "M(1,6)",
+        "top": 1,
+        "length": 6,
+        "composition_factors": [
+          1,
+          2,
+          3,
+          1,
+          2,
+          3
+        ],
+        "dimension_vector": [
+          2,
+          2,
+          2
+        ],
+        "endomorphism_dimension": 2,
+        "endomorphism_radical_dimension": 1,
+        "projective": false,
+        "injective": false,
+        "tau": "M(2,6)"
+      },
+      {
+        "label": "M(1,7)",
+        "top": 1,
+        "length": 7,
+        "composition_factors": [
+          1,
+          2,
+          3,
+          1,
+          2,
+          3,
+          1
+        ],
+        "dimension_vector": [
+          3,
+          2,
+          2
+        ],
+        "endomorphism_dimension": 3,
+        "endomorphism_radical_dimension": 2,
+        "projective": true,
+        "injective": true,
+        "tau": null
+      },
+      {
+        "label": "M(2,1)",
+        "top": 2,
+        "length": 1,
+        "composition_factors": [
+          2
+        ],
+        "dimension_vector": [
+          0,
+          1,
+          0
+        ],
+        "endomorphism_dimension": 1,
+        "endomorphism_radical_dimension": 0,
+        "projective": false,
+        "injective": false,
+        "tau": "M(3,1)"
+      },
+      {
+        "label": "M(2,2)",
+        "top": 2,
+        "length": 2,
+        "composition_factors": [
+          2,
+          3
+        ],
+        "dimension_vector": [
+          0,
+          1,
+          1
+        ],
+        "endomorphism_dimension": 1,
+        "endomorphism_radical_dimension": 0,
+        "projective": false,
+        "injective": false,
+        "tau": "M(3,2)"
+      },
+      {
+        "label": "M(2,3)",
+        "top": 2,
+        "length": 3,
+        "composition_factors": [
+          2,
+          3,
+          1
+        ],
+        "dimension_vector": [
+          1,
+          1,
+          1
+        ],
+        "endomorphism_dimension": 1,
+        "endomorphism_radical_dimension": 0,
+        "projective": false,
+        "injective": false,
+        "tau": "M(3,3)"
+      },
+      {
+        "label": "M(2,4)",
+        "top": 2,
+        "length": 4,
+        "composition_factors": [
+          2,
+          3,
+          1,
+          2
+        ],
+        "dimension_vector": [
+          1,
+          2,
+          1
+        ],
+        "endomorphism_dimension": 2,
+        "endomorphism_radical_dimension": 1,
+        "projective": false,
+        "injective": false,
+        "tau": "M(3,4)"
+      },
+      {
+        "label": "M(2,5)",
+        "top": 2,
+        "length": 5,
+        "composition_factors": [
+          2,
+          3,
+          1,
+          2,
+          3
+        ],
+        "dimension_vector": [
+          1,
+          2,
+          2
+        ],
+        "endomorphism_dimension": 2,
+        "endomorphism_radical_dimension": 1,
+        "projective": false,
+        "injective": false,
+        "tau": "M(3,5)"
+      },
+      {
+        "label": "M(2,6)",
+        "top": 2,
+        "length": 6,
+        "composition_factors": [
+          2,
+          3,
+          1,
+          2,
+          3,
+          1
+        ],
+        "dimension_vector": [
+          2,
+          2,
+          2
+        ],
+        "endomorphism_dimension": 2,
+        "endomorphism_radical_dimension": 1,
+        "projective": false,
+        "injective": false,
+        "tau": "M(3,6)"
+      },
+      {
+        "label": "M(2,7)",
+        "top": 2,
+        "length": 7,
+        "composition_factors": [
+          2,
+          3,
+          1,
+          2,
+          3,
+          1,
+          2
+        ],
+        "dimension_vector": [
+          2,
+          3,
+          2
+        ],
+        "endomorphism_dimension": 3,
+        "endomorphism_radical_dimension": 2,
+        "projective": true,
+        "injective": true,
+        "tau": null
+      },
+      {
+        "label": "M(3,1)",
+        "top": 3,
+        "length": 1,
+        "composition_factors": [
+          3
+        ],
+        "dimension_vector": [
+          0,
+          0,
+          1
+        ],
+        "endomorphism_dimension": 1,
+        "endomorphism_radical_dimension": 0,
+        "projective": false,
+        "injective": false,
+        "tau": "M(1,1)"
+      },
+      {
+        "label": "M(3,2)",
+        "top": 3,
+        "length": 2,
+        "composition_factors": [
+          3,
+          1
+        ],
+        "dimension_vector": [
+          1,
+          0,
+          1
+        ],
+        "endomorphism_dimension": 1,
+        "endomorphism_radical_dimension": 0,
+        "projective": false,
+        "injective": false,
+        "tau": "M(1,2)"
+      },
+      {
+        "label": "M(3,3)",
+        "top": 3,
+        "length": 3,
+        "composition_factors": [
+          3,
+          1,
+          2
+        ],
+        "dimension_vector": [
+          1,
+          1,
+          1
+        ],
+        "endomorphism_dimension": 1,
+        "endomorphism_radical_dimension": 0,
+        "projective": false,
+        "injective": false,
+        "tau": "M(1,3)"
+      },
+      {
+        "label": "M(3,4)",
+        "top": 3,
+        "length": 4,
+        "composition_factors": [
+          3,
+          1,
+          2,
+          3
+        ],
+        "dimension_vector": [
+          1,
+          1,
+          2
+        ],
+        "endomorphism_dimension": 2,
+        "endomorphism_radical_dimension": 1,
+        "projective": false,
+        "injective": false,
+        "tau": "M(1,4)"
+      },
+      {
+        "label": "M(3,5)",
+        "top": 3,
+        "length": 5,
+        "composition_factors": [
+          3,
+          1,
+          2,
+          3,
+          1
+        ],
+        "dimension_vector": [
+          2,
+          1,
+          2
+        ],
+        "endomorphism_dimension": 2,
+        "endomorphism_radical_dimension": 1,
+        "projective": false,
+        "injective": false,
+        "tau": "M(1,5)"
+      },
+      {
+        "label": "M(3,6)",
+        "top": 3,
+        "length": 6,
+        "composition_factors": [
+          3,
+          1,
+          2,
+          3,
+          1,
+          2
+        ],
+        "dimension_vector": [
+          2,
+          2,
+          2
+        ],
+        "endomorphism_dimension": 2,
+        "endomorphism_radical_dimension": 1,
+        "projective": false,
+        "injective": false,
+        "tau": "M(1,6)"
+      },
+      {
+        "label": "M(3,7)",
+        "top": 3,
+        "length": 7,
+        "composition_factors": [
+          3,
+          1,
+          2,
+          3,
+          1,
+          2,
+          3
+        ],
+        "dimension_vector": [
+          2,
+          2,
+          3
+        ],
+        "endomorphism_dimension": 3,
+        "endomorphism_radical_dimension": 2,
+        "projective": true,
+        "injective": true,
+        "tau": null
+      }
+    ],
+    "hom_matrix": [
+      [
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0
+      ],
+      [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        2,
+        0,
+        0,
+        1,
+        1,
+        1,
+        2,
+        1,
+        0,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        2,
+        2,
+        1,
+        2,
+        0,
+        0,
+        1,
+        1,
+        1,
+        2,
+        2,
+        0,
+        1,
+        1,
+        1,
+        2,
+        2,
+        1
+      ],
+      [
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0,
+        1,
+        1,
+        1,
+        2,
+        2,
+        0,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2
+      ],
+      [
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        3,
+        0,
+        0,
+        1,
+        1,
+        1,
+        2,
+        2,
+        0,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1
+      ],
+      [
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        0,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        2,
+        0,
+        0,
+        1,
+        1,
+        1,
+        2,
+        1
+      ],
+      [
+        0,
+        1,
+        1,
+        1,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        1,
+        2,
+        0,
+        0,
+        1,
+        1,
+        1,
+        2,
+        2
+      ],
+      [
+        0,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2,
+        0,
+        0,
+        1,
+        1,
+        1,
+        2,
+        2
+      ],
+      [
+        0,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        3,
+        0,
+        0,
+        1,
+        1,
+        1,
+        2,
+        2
+      ],
+      [
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1,
+        1,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        0,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ],
+      [
+        0,
+        0,
+        1,
+        1,
+        1,
+        2,
+        1,
+        0,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        1,
+        1,
+        1,
+        2,
+        1,
+        1,
+        2
+      ],
+      [
+        0,
+        0,
+        1,
+        1,
+        1,
+        2,
+        2,
+        0,
+        1,
+        1,
+        1,
+        2,
+        2,
+        1,
+        1,
+        1,
+        1,
+        2,
+        2,
+        1,
+        2
+      ],
+      [
+        0,
+        0,
+        1,
+        1,
+        1,
+        2,
+        2,
+        0,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        2
+      ],
+      [
+        0,
+        0,
+        1,
+        1,
+        1,
+        2,
+        2,
+        0,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        1,
+        1,
+        1,
+        2,
+        2,
+        2,
+        3
+      ]
+    ],
+    "ar_arrows": [
+      [
+        "M(1,1)",
+        "M(3,2)"
+      ],
+      [
+        "M(1,2)",
+        "M(1,1)"
+      ],
+      [
+        "M(1,2)",
+        "M(3,3)"
+      ],
+      [
+        "M(1,3)",
+        "M(1,2)"
+      ],
+      [
+        "M(1,3)",
+        "M(3,4)"
+      ],
+      [
+        "M(1,4)",
+        "M(1,3)"
+      ],
+      [
+        "M(1,4)",
+        "M(3,5)"
+      ],
+      [
+        "M(1,5)",
+        "M(1,4)"
+      ],
+      [
+        "M(1,5)",
+        "M(3,6)"
+      ],
+      [
+        "M(1,6)",
+        "M(1,5)"
+      ],
+      [
+        "M(1,6)",
+        "M(3,7)"
+      ],
+      [
+        "M(1,7)",
+        "M(1,6)"
+      ],
+      [
+        "M(2,1)",
+        "M(1,2)"
+      ],
+      [
+        "M(2,2)",
+        "M(1,3)"
+      ],
+      [
+        "M(2,2)",
+        "M(2,1)"
+      ],
+      [
+        "M(2,3)",
+        "M(1,4)"
+      ],
+      [
+        "M(2,3)",
+        "M(2,2)"
+      ],
+      [
+        "M(2,4)",
+        "M(1,5)"
+      ],
+      [
+        "M(2,4)",
+        "M(2,3)"
+      ],
+      [
+        "M(2,5)",
+        "M(1,6)"
+      ],
+      [
+        "M(2,5)",
+        "M(2,4)"
+      ],
+      [
+        "M(2,6)",
+        "M(1,7)"
+      ],
+      [
+        "M(2,6)",
+        "M(2,5)"
+      ],
+      [
+        "M(2,7)",
+        "M(2,6)"
+      ],
+      [
+        "M(3,1)",
+        "M(2,2)"
+      ],
+      [
+        "M(3,2)",
+        "M(2,3)"
+      ],
+      [
+        "M(3,2)",
+        "M(3,1)"
+      ],
+      [
+        "M(3,3)",
+        "M(2,4)"
+      ],
+      [
+        "M(3,3)",
+        "M(3,2)"
+      ],
+      [
+        "M(3,4)",
+        "M(2,5)"
+      ],
+      [
+        "M(3,4)",
+        "M(3,3)"
+      ],
+      [
+        "M(3,5)",
+        "M(2,6)"
+      ],
+      [
+        "M(3,5)",
+        "M(3,4)"
+      ],
+      [
+        "M(3,6)",
+        "M(2,7)"
+      ],
+      [
+        "M(3,6)",
+        "M(3,5)"
+      ],
+      [
+        "M(3,7)",
+        "M(3,6)"
+      ]
+    ],
+    "irreducible_multiplicities": [
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ]
+    ],
+    "exceptional_multiplicity": 2,
+    "loewy_length": 7,
+    "leaf_multiplicities": [
+      1,
+      1,
+      1
+    ]
+  }
+}
